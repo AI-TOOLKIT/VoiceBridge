@@ -100,7 +100,7 @@ VoiceBridge would not have been possible without the work of the following peopl
 
 10.	There are most probably still many people and companies who contributed to projects who are not mentioned here above but their names can be found in the source code. If you feel that you are a major contributor and I have forgot to mention your name then please let me know and I will add your name.
 
-###The use of VoiceBridge is subject to the AI-TOOLKIT Open Source Software License:
+##The use of VoiceBridge is subject to the AI-TOOLKIT Open Source Software License:
 
 *AI-TOOLKIT Open Source Software License - Version 2.0 - January 9, 2018*
 
