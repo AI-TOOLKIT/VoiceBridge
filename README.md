@@ -68,7 +68,8 @@ If you put the example projects into a directory called VoiceBridgeProjects at t
 
 	- **g.** Compile the test project located in ‘VoiceBridge\VoiceBridge\TestDll’.
 
-	- **h.** Run the example.
+	- **h.** Run the example. 
+**Important**: You must copy the dll's from the Redistributables directory into the Release and/or Debug folder!
 
 9.	**Redistribution**: The directory ‘VoiceBridge\Redistributables’ contains all the necessary dll’s which need to be redistributed with any software built with the use of VoiceBridge. Most of them are for the Intel MKL library and one is for OpenMP support. You may of course need to distribute some more dll's required by your compiler (MS VS2017) for example for the C++ runtime.
 
