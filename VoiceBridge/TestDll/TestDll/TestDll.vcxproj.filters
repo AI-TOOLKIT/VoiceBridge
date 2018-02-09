@@ -1,0 +1,156 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="boost">
+      <UniqueIdentifier>{3c77bfb6-4aec-4d03-9596-78ff7296f679}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="boost\filesystem">
+      <UniqueIdentifier>{b74e23dd-bec5-45bd-8024-830dd1b29e4f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="boost\system">
+      <UniqueIdentifier>{64e57545-c3d4-403b-b2d0-958dfbbf77bc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="boost\iostreams">
+      <UniqueIdentifier>{46f02712-11c7-40b5-87d5-7df06c05ef35}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="boost\regex">
+      <UniqueIdentifier>{e283c8ce-c11e-4490-8762-be9341fe0b03}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt" />
+    <Text Include="TODO.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="stdafx.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\VoiceBridge\boost\filesystem\src\windows_file_codecvt.hpp">
+      <Filter>boost\filesystem</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\VoiceBridge\boost\regex\src\internals.hpp">
+      <Filter>boost\regex</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ExamplesUtil.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TestDll.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\VoiceBridge\boost\filesystem\src\codecvt_error_category.cpp">
+      <Filter>boost\filesystem</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\VoiceBridge\boost\filesystem\src\operations.cpp">
+      <Filter>boost\filesystem</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\VoiceBridge\boost\filesystem\src\path.cpp">
+      <Filter>boost\filesystem</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\VoiceBridge\boost\filesystem\src\path_traits.cpp">
+      <Filter>boost\filesystem</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\VoiceBridge\boost\filesystem\src\portability.cpp">
+      <Filter>boost\filesystem</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\VoiceBridge\boost\filesystem\src\unique_path.cpp">
+      <Filter>boost\filesystem</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\VoiceBridge\boost\filesystem\src\utf8_codecvt_facet.cpp">
+      <Filter>boost\filesystem</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\VoiceBridge\boost\filesystem\src\windows_file_codecvt.cpp">
+      <Filter>boost\filesystem</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\VoiceBridge\boost\system\src\error_code.cpp">
+      <Filter>boost\system</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\VoiceBridge\boost\regex\src\c_regex_traits.cpp">
+      <Filter>boost\regex</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\VoiceBridge\boost\regex\src\cpp_regex_traits.cpp">
+      <Filter>boost\regex</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\VoiceBridge\boost\regex\src\cregex.cpp">
+      <Filter>boost\regex</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\VoiceBridge\boost\regex\src\fileiter.cpp">
+      <Filter>boost\regex</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\VoiceBridge\boost\regex\src\icu.cpp">
+      <Filter>boost\regex</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\VoiceBridge\boost\regex\src\instances.cpp">
+      <Filter>boost\regex</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\VoiceBridge\boost\regex\src\posix_api.cpp">
+      <Filter>boost\regex</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\VoiceBridge\boost\regex\src\regex.cpp">
+      <Filter>boost\regex</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\VoiceBridge\boost\regex\src\regex_debug.cpp">
+      <Filter>boost\regex</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\VoiceBridge\boost\regex\src\regex_raw_buffer.cpp">
+      <Filter>boost\regex</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\VoiceBridge\boost\regex\src\regex_traits_defaults.cpp">
+      <Filter>boost\regex</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\VoiceBridge\boost\regex\src\static_mutex.cpp">
+      <Filter>boost\regex</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\VoiceBridge\boost\regex\src\usinstances.cpp">
+      <Filter>boost\regex</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\VoiceBridge\boost\regex\src\w32_regex_traits.cpp">
+      <Filter>boost\regex</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\VoiceBridge\boost\regex\src\wc_regex_traits.cpp">
+      <Filter>boost\regex</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\VoiceBridge\boost\regex\src\wide_posix_api.cpp">
+      <Filter>boost\regex</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\VoiceBridge\boost\regex\src\winstances.cpp">
+      <Filter>boost\regex</Filter>
+    </ClCompile>
+    <ClCompile Include="LibriSpeech.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="YesNo.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ExamplesUtil.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="TestDll.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+</Project>

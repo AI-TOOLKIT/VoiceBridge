@@ -1,0 +1,71 @@
+Date Time : 30-Dec-17 11:48:06
+
+Error Details : Object reference not set to an instance of an object.
+
+Stack details :    at Microsoft.Syncfusion_VSExtension_Troubleshooter.Syncfusion_VSExtension_TroubleshooterPackage.CanEnableCommand(String projectTypeGuid)
+   at Microsoft.Syncfusion_VSExtension_Troubleshooter.Syncfusion_VSExtension_TroubleshooterPackage.queryStatusMenuCommand_BeforeQueryStatus(Object sender, EventArgs e)
+
+*****************************************************************
+
+Date Time : 30-Dec-17 11:48:29
+
+Error Details : Object reference not set to an instance of an object.
+
+Stack details :    at Microsoft.Syncfusion_VSExtension_Troubleshooter.Syncfusion_VSExtension_TroubleshooterPackage.CanEnableCommand(String projectTypeGuid)
+   at Microsoft.Syncfusion_VSExtension_Troubleshooter.Syncfusion_VSExtension_TroubleshooterPackage.queryStatusMenuCommand_BeforeQueryStatus(Object sender, EventArgs e)
+
+*****************************************************************
+
+Date Time : 30-Dec-17 11:48:39
+
+Error Details : Object reference not set to an instance of an object.
+
+Stack details :    at Microsoft.Syncfusion_VSExtension_Troubleshooter.Syncfusion_VSExtension_TroubleshooterPackage.CanEnableCommand(String projectTypeGuid)
+   at Microsoft.Syncfusion_VSExtension_Troubleshooter.Syncfusion_VSExtension_TroubleshooterPackage.queryStatusMenuCommand_BeforeQueryStatus(Object sender, EventArgs e)
+
+*****************************************************************
+
+Date Time : 30-Dec-17 11:49:03
+
+Error Details : Object reference not set to an instance of an object.
+
+Stack details :    at Microsoft.Syncfusion_VSExtension_Troubleshooter.Syncfusion_VSExtension_TroubleshooterPackage.CanEnableCommand(String projectTypeGuid)
+   at Microsoft.Syncfusion_VSExtension_Troubleshooter.Syncfusion_VSExtension_TroubleshooterPackage.queryStatusMenuCommand_BeforeQueryStatus(Object sender, EventArgs e)
+
+*****************************************************************
+
+Date Time : 30-Dec-17 11:49:22
+
+Error Details : Object reference not set to an instance of an object.
+
+Stack details :    at Microsoft.Syncfusion_VSExtension_Troubleshooter.Syncfusion_VSExtension_TroubleshooterPackage.CanEnableCommand(String projectTypeGuid)
+   at Microsoft.Syncfusion_VSExtension_Troubleshooter.Syncfusion_VSExtension_TroubleshooterPackage.queryStatusMenuCommand_BeforeQueryStatus(Object sender, EventArgs e)
+
+*****************************************************************
+
+Date Time : 30-Dec-17 11:49:25
+
+Error Details : Object reference not set to an instance of an object.
+
+Stack details :    at Microsoft.Syncfusion_VSExtension_Troubleshooter.Syncfusion_VSExtension_TroubleshooterPackage.CanEnableCommand(String projectTypeGuid)
+   at Microsoft.Syncfusion_VSExtension_Troubleshooter.Syncfusion_VSExtension_TroubleshooterPackage.queryStatusMenuCommand_BeforeQueryStatus(Object sender, EventArgs e)
+
+*****************************************************************
+
+Date Time : 30-Dec-17 11:49:32
+
+Error Details : Object reference not set to an instance of an object.
+
+Stack details :    at Microsoft.Syncfusion_VSExtension_Troubleshooter.Syncfusion_VSExtension_TroubleshooterPackage.CanEnableCommand(String projectTypeGuid)
+   at Microsoft.Syncfusion_VSExtension_Troubleshooter.Syncfusion_VSExtension_TroubleshooterPackage.queryStatusMenuCommand_BeforeQueryStatus(Object sender, EventArgs e)
+
+*****************************************************************
+
+Date Time : 30-Dec-17 11:49:36
+
+Error Details : Object reference not set to an instance of an object.
+
+Stack details :    at Microsoft.Syncfusion_VSExtension_Troubleshooter.Syncfusion_VSExtension_TroubleshooterPackage.CanEnableCommand(String projectTypeGuid)
+   at Microsoft.Syncfusion_VSExtension_Troubleshooter.Syncfusion_VSExtension_TroubleshooterPackage.queryStatusMenuCommand_BeforeQueryStatus(Object sender, EventArgs e)
+
+*****************************************************************

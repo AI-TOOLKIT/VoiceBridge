@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>15.0</VCProjectVersion>
+    <ProjectGuid>{AB50AD99-2C5B-44F3-B55C-B907C5A4FBFF}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>TestDll</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="..\..\..\SettingsVoiceBridge.props" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="..\..\..\SettingsVoiceBridge.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LinkIncremental>true</LinkIncremental>
+    <IncludePath>$(SolutionDir)..\VoiceBridge;$(SolutionDir)..\VoiceBridge\VoiceBridge;$(SolutionDir)..\..\kaldi-master\src;$(SolutionDir)..\..\openfst-win-1.6\src\include;$(SolutionDir)..\VoiceBridge\zlib;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)..\VoiceBridge\x64\Debug;$(LibraryPath);$(SolutionDir)..\VoiceBridge\zlib</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LinkIncremental>false</LinkIncremental>
+    <IncludePath>$(SolutionDir)..\VoiceBridge;$(SolutionDir)..\VoiceBridge\VoiceBridge;$(SolutionDir)..\..\kaldi-master\src;$(SolutionDir)..\..\openfst-win-1.6\src\include;$(SolutionDir)..\VoiceBridge\zlib;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)..\VoiceBridge\x64\Release;$(LibraryPath);$(SolutionDir)..\VoiceBridge\zlib</LibraryPath>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions);WIN32;BOOST_ALL_NO_LIB;_CRT_SECURE_NO_WARNINGS;_SCL_SECURE_NO_WARNINGS;HAVE_MKL;NOMINMAX</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>VoiceBridge.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+    <PreBuildEvent>
+      <Command>xcopy /Y "$(ProjectDir)..\..\VoiceBridge\x64\Debug\VoiceBridge.dll" $(TargetDir)</Command>
+    </PreBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions);WIN32;BOOST_ALL_NO_LIB;_CRT_SECURE_NO_WARNINGS;_SCL_SECURE_NO_WARNINGS;HAVE_MKL;NOMINMAX</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>VoiceBridge.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+    <PreBuildEvent>
+      <Command>xcopy /Y "$(ProjectDir)..\..\VoiceBridge\x64\Release\VoiceBridge.dll" $(TargetDir)</Command>
+    </PreBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt" />
+    <Text Include="TODO.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\VoiceBridge\boost\filesystem\src\windows_file_codecvt.hpp" />
+    <ClInclude Include="..\..\VoiceBridge\boost\regex\src\internals.hpp" />
+    <ClInclude Include="ExamplesUtil.h" />
+    <ClInclude Include="resource.h" />
+    <ClInclude Include="stdafx.h" />
+    <ClInclude Include="targetver.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\VoiceBridge\boost\filesystem\src\codecvt_error_category.cpp" />
+    <ClCompile Include="..\..\VoiceBridge\boost\filesystem\src\operations.cpp" />
+    <ClCompile Include="..\..\VoiceBridge\boost\filesystem\src\path.cpp" />
+    <ClCompile Include="..\..\VoiceBridge\boost\filesystem\src\path_traits.cpp" />
+    <ClCompile Include="..\..\VoiceBridge\boost\filesystem\src\portability.cpp" />
+    <ClCompile Include="..\..\VoiceBridge\boost\filesystem\src\unique_path.cpp" />
+    <ClCompile Include="..\..\VoiceBridge\boost\filesystem\src\utf8_codecvt_facet.cpp" />
+    <ClCompile Include="..\..\VoiceBridge\boost\filesystem\src\windows_file_codecvt.cpp" />
+    <ClCompile Include="..\..\VoiceBridge\boost\regex\src\cpp_regex_traits.cpp" />
+    <ClCompile Include="..\..\VoiceBridge\boost\regex\src\cregex.cpp" />
+    <ClCompile Include="..\..\VoiceBridge\boost\regex\src\c_regex_traits.cpp" />
+    <ClCompile Include="..\..\VoiceBridge\boost\regex\src\fileiter.cpp" />
+    <ClCompile Include="..\..\VoiceBridge\boost\regex\src\icu.cpp" />
+    <ClCompile Include="..\..\VoiceBridge\boost\regex\src\instances.cpp" />
+    <ClCompile Include="..\..\VoiceBridge\boost\regex\src\posix_api.cpp" />
+    <ClCompile Include="..\..\VoiceBridge\boost\regex\src\regex.cpp" />
+    <ClCompile Include="..\..\VoiceBridge\boost\regex\src\regex_debug.cpp" />
+    <ClCompile Include="..\..\VoiceBridge\boost\regex\src\regex_raw_buffer.cpp" />
+    <ClCompile Include="..\..\VoiceBridge\boost\regex\src\regex_traits_defaults.cpp" />
+    <ClCompile Include="..\..\VoiceBridge\boost\regex\src\static_mutex.cpp" />
+    <ClCompile Include="..\..\VoiceBridge\boost\regex\src\usinstances.cpp" />
+    <ClCompile Include="..\..\VoiceBridge\boost\regex\src\w32_regex_traits.cpp" />
+    <ClCompile Include="..\..\VoiceBridge\boost\regex\src\wc_regex_traits.cpp" />
+    <ClCompile Include="..\..\VoiceBridge\boost\regex\src\wide_posix_api.cpp" />
+    <ClCompile Include="..\..\VoiceBridge\boost\regex\src\winstances.cpp" />
+    <ClCompile Include="..\..\VoiceBridge\boost\system\src\error_code.cpp" />
+    <ClCompile Include="ExamplesUtil.cpp" />
+    <ClCompile Include="LibriSpeech.cpp" />
+    <ClCompile Include="stdafx.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="TestDll.cpp" />
+    <ClCompile Include="YesNo.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="TestDll.rc" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.1" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{1EE7927B-7B96-4F2F-9F06-3AA6865F484E}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
+    <RootNamespace>kaldionline2</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v141</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
+    <Import Project="..\..\..\..\SettingsVoiceBridge.props" />
+    <Import Project="..\kaldiwin.props" />
+    <Import Project="..\openfstwin_debug.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+    <Import Project="..\..\..\..\SettingsVoiceBridge.props" />
+    <Import Project="..\kaldiwin.props" />
+    <Import Project="..\openfstwin_release.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.14393.0</_ProjectFileVersion>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ProgramDataBaseFileName>$(OutDir)$(ProjectName).pdb</ProgramDataBaseFileName>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <Optimization>MaxSpeed</Optimization>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ProgramDataBaseFileName>$(OutDir)$(ProjectName).pdb</ProgramDataBaseFileName>
+      <WholeProgramOptimization>false</WholeProgramOptimization>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\src\online2\online-endpoint.cc" />
+    <ClCompile Include="..\..\..\src\online2\online-feature-pipeline.cc" />
+    <ClCompile Include="..\..\..\src\online2\online-gmm-decodable.cc" />
+    <ClCompile Include="..\..\..\src\online2\online-gmm-decoding.cc" />
+    <ClCompile Include="..\..\..\src\online2\online-ivector-feature.cc" />
+    <ClCompile Include="..\..\..\src\online2\online-nnet2-decoding-threaded.cc" />
+    <ClCompile Include="..\..\..\src\online2\online-nnet2-decoding.cc" />
+    <ClCompile Include="..\..\..\src\online2\online-nnet2-feature-pipeline.cc" />
+    <ClCompile Include="..\..\..\src\online2\online-nnet3-decoding.cc" />
+    <ClCompile Include="..\..\..\src\online2\online-speex-wrapper.cc" />
+    <ClCompile Include="..\..\..\src\online2\online-timing.cc" />
+    <ClCompile Include="..\..\..\src\online2\onlinebin-util.cc" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\src\online2\online-endpoint.h" />
+    <ClInclude Include="..\..\..\src\online2\online-feature-pipeline.h" />
+    <ClInclude Include="..\..\..\src\online2\online-gmm-decodable.h" />
+    <ClInclude Include="..\..\..\src\online2\online-gmm-decoding.h" />
+    <ClInclude Include="..\..\..\src\online2\online-ivector-feature.h" />
+    <ClInclude Include="..\..\..\src\online2\online-nnet2-decoding-threaded.h" />
+    <ClInclude Include="..\..\..\src\online2\online-nnet2-decoding.h" />
+    <ClInclude Include="..\..\..\src\online2\online-nnet2-feature-pipeline.h" />
+    <ClInclude Include="..\..\..\src\online2\online-nnet3-decoding.h" />
+    <ClInclude Include="..\..\..\src\online2\online-speex-wrapper.h" />
+    <ClInclude Include="..\..\..\src\online2\online-timing.h" />
+    <ClInclude Include="..\..\..\src\online2\onlinebin-util.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

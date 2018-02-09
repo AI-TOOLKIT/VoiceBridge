@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.1" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{8DE54685-06D6-4D47-846D-3B77B0B00446}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
+    <RootNamespace>kaldirnnlm</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v141</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
+    <Import Project="..\..\..\..\SettingsVoiceBridge.props" />
+    <Import Project="..\kaldiwin.props" />
+    <Import Project="..\openfstwin_debug.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+    <Import Project="..\..\..\..\SettingsVoiceBridge.props" />
+    <Import Project="..\kaldiwin.props" />
+    <Import Project="..\openfstwin_release.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.14393.0</_ProjectFileVersion>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ProgramDataBaseFileName>$(OutDir)$(ProjectName).pdb</ProgramDataBaseFileName>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <Optimization>MaxSpeed</Optimization>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ProgramDataBaseFileName>$(OutDir)$(ProjectName).pdb</ProgramDataBaseFileName>
+      <WholeProgramOptimization>false</WholeProgramOptimization>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\src\rnnlm\rnnlm-compute-state.cc" />
+    <ClCompile Include="..\..\..\src\rnnlm\rnnlm-core-compute.cc" />
+    <ClCompile Include="..\..\..\src\rnnlm\rnnlm-core-training.cc" />
+    <ClCompile Include="..\..\..\src\rnnlm\rnnlm-embedding-training.cc" />
+    <ClCompile Include="..\..\..\src\rnnlm\rnnlm-example-utils.cc" />
+    <ClCompile Include="..\..\..\src\rnnlm\rnnlm-example.cc" />
+    <ClCompile Include="..\..\..\src\rnnlm\rnnlm-lattice-rescoring.cc" />
+    <ClCompile Include="..\..\..\src\rnnlm\rnnlm-test-utils.cc" />
+    <ClCompile Include="..\..\..\src\rnnlm\rnnlm-training.cc" />
+    <ClCompile Include="..\..\..\src\rnnlm\rnnlm-utils.cc" />
+    <ClCompile Include="..\..\..\src\rnnlm\sampler.cc" />
+    <ClCompile Include="..\..\..\src\rnnlm\sampling-lm-estimate.cc" />
+    <ClCompile Include="..\..\..\src\rnnlm\sampling-lm.cc" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\src\rnnlm\rnnlm-compute-state.h" />
+    <ClInclude Include="..\..\..\src\rnnlm\rnnlm-core-compute.h" />
+    <ClInclude Include="..\..\..\src\rnnlm\rnnlm-core-training.h" />
+    <ClInclude Include="..\..\..\src\rnnlm\rnnlm-embedding-training.h" />
+    <ClInclude Include="..\..\..\src\rnnlm\rnnlm-example-utils.h" />
+    <ClInclude Include="..\..\..\src\rnnlm\rnnlm-example.h" />
+    <ClInclude Include="..\..\..\src\rnnlm\rnnlm-lattice-rescoring.h" />
+    <ClInclude Include="..\..\..\src\rnnlm\rnnlm-test-utils.h" />
+    <ClInclude Include="..\..\..\src\rnnlm\rnnlm-training.h" />
+    <ClInclude Include="..\..\..\src\rnnlm\rnnlm-utils.h" />
+    <ClInclude Include="..\..\..\src\rnnlm\sampler.h" />
+    <ClInclude Include="..\..\..\src\rnnlm\sampling-lm-estimate.h" />
+    <ClInclude Include="..\..\..\src\rnnlm\sampling-lm.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

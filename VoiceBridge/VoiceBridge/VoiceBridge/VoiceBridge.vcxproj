@@ -1,0 +1,443 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>15.0</VCProjectVersion>
+    <ProjectGuid>{D990240C-E9C7-409F-BABE-BBC06A1801AC}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>VoiceBridge</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
+    <ProjectName>VoiceBridge</ProjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="..\..\..\SettingsVoiceBridge.props" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="..\..\..\SettingsVoiceBridge.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LinkIncremental>true</LinkIncremental>
+    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);$(MKLDIR)\include;$(SolutionDir)zlib;$(SolutionDir)..\..\kaldi-master\src;$(ProjectDir);$(SolutionDir);$(SolutionDir)..\..\openfst-win-1.6\src\include;$(SolutionDir)zlib\minizip;$(SolutionDir)minizip</IncludePath>
+    <LibraryPath>$(SolutionDir)zlib;$(SolutionDir)..\..\kaldi-master\kaldiwin_vs2017_MKL\x64\Debug;$(SolutionDir)..\..\openfst-win-1.6\x64\Debug;$(LibraryPath);$(SolutionDir)..\..\VoiceBridge\VoiceBridge\zlib\minizip</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LinkIncremental>false</LinkIncremental>
+    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);$(MKLDIR)\include;$(SolutionDir)zlib;$(SolutionDir)..\..\kaldi-master\src;$(ProjectDir);$(SolutionDir);$(SolutionDir)..\..\openfst-win-1.6\src\include;$(SolutionDir)zlib\minizip;$(SolutionDir)minizip</IncludePath>
+    <LibraryPath>$(SolutionDir)zlib;$(SolutionDir)..\..\kaldi-master\kaldiwin_vs2017_MKL\x64\Release;$(SolutionDir)..\..\openfst-win-1.6\x64\Release;$(LibraryPath);$(SolutionDir)..\..\VoiceBridge\VoiceBridge\zlib\minizip</LibraryPath>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>_DEBUG;VOICEBRIDGE_EXPORTS;_WINDOWS;_USRDLL;WIN32;BOOST_ALL_NO_LIB;_CRT_SECURE_NO_WARNINGS;_SCL_SECURE_NO_WARNINGS;HAVE_MKL;NOMINMAX;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+      <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
+      <OpenMPSupport>true</OpenMPSupport>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>libfst.lib;mkl_rt.lib;mkl_intel_thread.lib;mkl_core.lib;mkl_intel_lp64.lib;kaldi-base.lib;kaldi-util.lib;kaldi-fstext.lib;kaldi-matrix.lib;kaldi-feat.lib;kaldi-transform.lib;kaldi-gmm.lib;kaldi-hmm.lib;kaldi-tree.lib;kaldi-decoder.lib;kaldi-lat.lib;zlibstatd.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(MKLDIR)\lib\intel64</AdditionalLibraryDirectories>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>NDEBUG;VOICEBRIDGE_EXPORTS;_WINDOWS;_USRDLL;WIN32;BOOST_ALL_NO_LIB;_CRT_SECURE_NO_WARNINGS;_SCL_SECURE_NO_WARNINGS;HAVE_MKL;NOMINMAX;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+      <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
+      <OpenMPSupport>true</OpenMPSupport>
+      <WholeProgramOptimization>false</WholeProgramOptimization>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>libfst.lib;mkl_rt.lib;mkl_intel_thread.lib;mkl_core.lib;mkl_intel_lp64.lib;kaldi-base.lib;kaldi-util.lib;kaldi-fstext.lib;kaldi-matrix.lib;kaldi-feat.lib;kaldi-transform.lib;kaldi-gmm.lib;kaldi-hmm.lib;kaldi-tree.lib;kaldi-decoder.lib;kaldi-lat.lib;zlibstat.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(MKLDIR)\lib\intel64</AdditionalLibraryDirectories>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\kaldi-master\src\lm\arpa-file-parser.h" />
+    <ClInclude Include="..\..\..\kaldi-master\src\lm\arpa-lm-compiler.h" />
+    <ClInclude Include="..\boost\filesystem\src\windows_file_codecvt.hpp" />
+    <ClInclude Include="..\boost\regex\src\internals.hpp" />
+    <ClInclude Include="..\kaldi-win\scr\Params.h" />
+    <ClInclude Include="..\kaldi-win\utility\Utility2.h" />
+    <ClInclude Include="..\minizip\unzipper.h" />
+    <ClInclude Include="..\minizip\zipper.h" />
+    <ClInclude Include="..\mitlm\InterpolatedNgramLM.h" />
+    <ClInclude Include="..\mitlm\KneserNeySmoothing.h" />
+    <ClInclude Include="..\mitlm\Lattice.h" />
+    <ClInclude Include="..\mitlm\Mask.h" />
+    <ClInclude Include="..\mitlm\MaxLikelihoodSmoothing.h" />
+    <ClInclude Include="..\mitlm\mitlm.h" />
+    <ClInclude Include="..\mitlm\NgramLM.h" />
+    <ClInclude Include="..\mitlm\NgramModel.h" />
+    <ClInclude Include="..\mitlm\NgramVector.h" />
+    <ClInclude Include="..\mitlm\PerplexityOptimizer.h" />
+    <ClInclude Include="..\mitlm\Smoothing.h" />
+    <ClInclude Include="..\mitlm\Types.h" />
+    <ClInclude Include="..\mitlm\util\BitOps.h" />
+    <ClInclude Include="..\mitlm\util\CommandOptions.h" />
+    <ClInclude Include="..\mitlm\util\constants.h" />
+    <ClInclude Include="..\mitlm\util\FastHash.h" />
+    <ClInclude Include="..\mitlm\util\FastIO.h" />
+    <ClInclude Include="..\mitlm\util\Logger.h" />
+    <ClInclude Include="..\mitlm\util\RefCounter.h" />
+    <ClInclude Include="..\mitlm\util\SharedPtr.h" />
+    <ClInclude Include="..\mitlm\util\ZFile.h" />
+    <ClInclude Include="..\mitlm\vector\DenseVector.h" />
+    <ClInclude Include="..\mitlm\vector\Operations.h" />
+    <ClInclude Include="..\mitlm\vector\Range.h" />
+    <ClInclude Include="..\mitlm\vector\Scalar.h" />
+    <ClInclude Include="..\mitlm\vector\Traits.h" />
+    <ClInclude Include="..\mitlm\vector\Vector.h" />
+    <ClInclude Include="..\mitlm\vector\VectorBuilder.h" />
+    <ClInclude Include="..\mitlm\vector\VectorClosures.h" />
+    <ClInclude Include="..\mitlm\vector\VectorOps.h" />
+    <ClInclude Include="..\mitlm\Vocab.h" />
+    <ClInclude Include="..\mitlm\WordErrorRateOptimizer.h" />
+    <ClInclude Include="..\phonetisaurus\ARPA2WFST.h" />
+    <ClInclude Include="..\phonetisaurus\LatticePruner.h" />
+    <ClInclude Include="..\phonetisaurus\M2MFstAligner.h" />
+    <ClInclude Include="..\phonetisaurus\Phonetisaurus.h" />
+    <ClInclude Include="..\phonetisaurus\PhonetisaurusRex.h" />
+    <ClInclude Include="..\phonetisaurus\PhonetisaurusScript.h" />
+    <ClInclude Include="..\phonetisaurus\utilp.h" />
+    <ClInclude Include="..\strtk\strtk.hpp" />
+    <ClInclude Include="..\zlib\minizip\ioapi.h" />
+    <ClInclude Include="..\zlib\minizip\unzip.h" />
+    <ClInclude Include="..\zlib\minizip\zip.h" />
+    <ClInclude Include="..\zlib\zconf.h" />
+    <ClInclude Include="..\zlib\zlib.h" />
+    <ClInclude Include="VoiceBridge.h" />
+    <ClInclude Include="resource.h" />
+    <ClInclude Include="stdafx.h" />
+    <ClInclude Include="targetver.h" />
+    <ClInclude Include="..\..\..\openfst-win-1.6\src\include\fst\script\script-impl.h">
+      <Filter>openfst\lib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\openfst-win-1.6\src\include\fst\script\weight-class.h">
+      <Filter>openfst\lib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\openfst-win-1.6\src\include\fst\script\info.h">
+      <Filter>openfst\lib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\openfst-win-1.6\src\include\fst\script\info-impl.h">
+      <Filter>openfst\lib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\openfst-win-1.6\src\include\fst\compose.h">
+      <Filter>openfst\lib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\openfst-win-1.6\src\include\fst\compose-filter.h">
+      <Filter>openfst\lib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\kaldi-win\scr\kaldi_scr.h" />
+    <ClInclude Include="..\kaldi-win\src\fstbin\fst_ext.h" />
+    <ClInclude Include="..\kaldi-win\src\kaldi_src.h" />
+    <ClInclude Include="..\kaldi-win\stdafx.h" />
+    <ClInclude Include="..\kaldi-win\utility\strvec2arg.h" />
+    <ClInclude Include="..\kaldi-win\utility\TwinLoggerMT.h" />
+    <ClInclude Include="..\kaldi-win\utility\Utility.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\kaldi-master\src\lm\arpa-file-parser.cc" />
+    <ClCompile Include="..\..\..\kaldi-master\src\lm\arpa-lm-compiler.cc" />
+    <ClCompile Include="..\..\..\openfst-win-1.6\src\script\convert.cc" />
+    <ClCompile Include="..\..\..\openfst-win-1.6\src\script\verify.cc" />
+    <ClCompile Include="..\boost\filesystem\src\codecvt_error_category.cpp" />
+    <ClCompile Include="..\boost\filesystem\src\operations.cpp" />
+    <ClCompile Include="..\boost\filesystem\src\path.cpp" />
+    <ClCompile Include="..\boost\filesystem\src\path_traits.cpp" />
+    <ClCompile Include="..\boost\filesystem\src\portability.cpp" />
+    <ClCompile Include="..\boost\filesystem\src\unique_path.cpp" />
+    <ClCompile Include="..\boost\filesystem\src\utf8_codecvt_facet.cpp" />
+    <ClCompile Include="..\boost\filesystem\src\windows_file_codecvt.cpp" />
+    <ClCompile Include="..\boost\iostreams\src\file_descriptor.cpp" />
+    <ClCompile Include="..\boost\iostreams\src\gzip.cpp" />
+    <ClCompile Include="..\boost\iostreams\src\mapped_file.cpp" />
+    <ClCompile Include="..\boost\iostreams\src\zlib.cpp" />
+    <ClCompile Include="..\boost\regex\src\cpp_regex_traits.cpp" />
+    <ClCompile Include="..\boost\regex\src\cregex.cpp" />
+    <ClCompile Include="..\boost\regex\src\c_regex_traits.cpp" />
+    <ClCompile Include="..\boost\regex\src\fileiter.cpp" />
+    <ClCompile Include="..\boost\regex\src\icu.cpp" />
+    <ClCompile Include="..\boost\regex\src\instances.cpp" />
+    <ClCompile Include="..\boost\regex\src\posix_api.cpp" />
+    <ClCompile Include="..\boost\regex\src\regex.cpp" />
+    <ClCompile Include="..\boost\regex\src\regex_debug.cpp" />
+    <ClCompile Include="..\boost\regex\src\regex_raw_buffer.cpp" />
+    <ClCompile Include="..\boost\regex\src\regex_traits_defaults.cpp" />
+    <ClCompile Include="..\boost\regex\src\static_mutex.cpp" />
+    <ClCompile Include="..\boost\regex\src\usinstances.cpp" />
+    <ClCompile Include="..\boost\regex\src\w32_regex_traits.cpp" />
+    <ClCompile Include="..\boost\regex\src\wc_regex_traits.cpp" />
+    <ClCompile Include="..\boost\regex\src\wide_posix_api.cpp" />
+    <ClCompile Include="..\boost\regex\src\winstances.cpp" />
+    <ClCompile Include="..\boost\system\src\error_code.cpp" />
+    <ClCompile Include="..\..\..\openfst-win-1.6\src\script\compile.cc">
+      <Filter>openfst\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\openfst-win-1.6\src\script\weight-class.cc">
+      <Filter>openfst\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\openfst-win-1.6\src\script\arcsort.cc">
+      <Filter>openfst\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\openfst-win-1.6\src\script\getters.cc">
+      <Filter>openfst\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\openfst-win-1.6\src\script\fst-class.cc">
+      <Filter>openfst\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\openfst-win-1.6\src\script\info.cc">
+      <Filter>openfst\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\openfst-win-1.6\src\script\info-impl.cc">
+      <Filter>openfst\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\openfst-win-1.6\src\script\replace.cc">
+      <Filter>openfst\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\openfst-win-1.6\src\script\compose.cc">
+      <Filter>openfst\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\openfst-win-1.6\src\script\randgen.cc">
+      <Filter>openfst\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\openfst-win-1.6\src\script\project.cc">
+      <Filter>openfst\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\openfst-win-1.6\src\script\topsort.cc">
+      <Filter>openfst\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\openfst-win-1.6\src\script\rmepsilon.cc">
+      <Filter>openfst\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\openfst-win-1.6\src\script\print.cc">
+      <Filter>openfst\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\kaldi-win\scr\ext\lm\prepare_test_lms.cpp" />
+    <ClCompile Include="..\kaldi-win\scr\steps\align_si.cpp" />
+    <ClCompile Include="..\kaldi-win\scr\steps\decode_fmllr.cpp" />
+    <ClCompile Include="..\kaldi-win\scr\steps\decode_gmm.cpp" />
+    <ClCompile Include="..\kaldi-win\scr\steps\diagnostic\analyze_lats.cpp" />
+    <ClCompile Include="..\kaldi-win\scr\steps\diagnostic\analyze_lattice_depth_stats.cpp" />
+    <ClCompile Include="..\kaldi-win\scr\steps\get_prons.cpp" />
+    <ClCompile Include="..\kaldi-win\scr\steps\scoring\score_kaldi_cer.cpp" />
+    <ClCompile Include="..\kaldi-win\scr\steps\scoring\score_kaldi_wer.cpp" />
+    <ClCompile Include="..\kaldi-win\scr\steps\train_deltas.cpp" />
+    <ClCompile Include="..\kaldi-win\scr\steps\train_lda_mllt.cpp" />
+    <ClCompile Include="..\kaldi-win\scr\steps\train_sat.cpp" />
+    <ClCompile Include="..\kaldi-win\scr\utils\best_wer.cpp" />
+    <ClCompile Include="..\kaldi-win\scr\utils\int2sym.cpp" />
+    <ClCompile Include="..\kaldi-win\scr\utils\lang\check_phones_compatible.cpp" />
+    <ClCompile Include="..\kaldi-win\scr\utils\mkgraph.cpp" />
+    <ClCompile Include="..\kaldi-win\scr\utils\prepare_dict.cpp" />
+    <ClCompile Include="..\kaldi-win\scr\utils\scoring\wer_ops_details.cpp" />
+    <ClCompile Include="..\kaldi-win\scr\utils\scoring\wer_per_spk_details.cpp" />
+    <ClCompile Include="..\kaldi-win\scr\utils\scoring\wer_per_utt_details.cpp" />
+    <ClCompile Include="..\kaldi-win\src\bin\acc-lda.cpp" />
+    <ClCompile Include="..\kaldi-win\src\bin\acc-tree-stats.cpp" />
+    <ClCompile Include="..\kaldi-win\src\bin\add-self-loops.cpp" />
+    <ClCompile Include="..\kaldi-win\src\bin\ali-to-post.cpp" />
+    <ClCompile Include="..\kaldi-win\src\bin\align-text.cpp" />
+    <ClCompile Include="..\kaldi-win\src\bin\am-info.cpp" />
+    <ClCompile Include="..\kaldi-win\src\bin\build-tree.cpp" />
+    <ClCompile Include="..\kaldi-win\src\bin\cluster-phones.cpp" />
+    <ClCompile Include="..\kaldi-win\src\bin\compile-questions.cpp" />
+    <ClCompile Include="..\kaldi-win\src\bin\compute-wer-bootci.cpp" />
+    <ClCompile Include="..\kaldi-win\src\bin\compute-wer.cpp" />
+    <ClCompile Include="..\kaldi-win\src\bin\convert-ali.cpp" />
+    <ClCompile Include="..\kaldi-win\src\bin\est-lda.cpp" />
+    <ClCompile Include="..\kaldi-win\src\bin\est-mllt.cpp" />
+    <ClCompile Include="..\kaldi-win\src\bin\make-h-transducer.cpp" />
+    <ClCompile Include="..\kaldi-win\src\bin\sum-tree-stats.cpp" />
+    <ClCompile Include="..\kaldi-win\src\bin\tree-info.cpp" />
+    <ClCompile Include="..\kaldi-win\src\bin\weight-silence-post.cpp" />
+    <ClCompile Include="..\kaldi-win\src\featbin\compose-transforms.cpp" />
+    <ClCompile Include="..\kaldi-win\src\featbin\splice-feats.cpp" />
+    <ClCompile Include="..\kaldi-win\src\featbin\transform-feats.cpp" />
+    <ClCompile Include="..\kaldi-win\src\fstbin\fstcomposecontext.cpp" />
+    <ClCompile Include="..\kaldi-win\src\fstbin\fstconvert.cpp" />
+    <ClCompile Include="..\kaldi-win\src\fstbin\fstminimizeencoded.cpp" />
+    <ClCompile Include="..\kaldi-win\src\fstbin\fstpushspecial.cpp" />
+    <ClCompile Include="..\kaldi-win\src\fstbin\fstrmepslocal.cpp" />
+    <ClCompile Include="..\kaldi-win\src\fstbin\fstrmsymbols.cpp" />
+    <ClCompile Include="..\kaldi-win\src\fstbin\fstsymbols.cpp" />
+    <ClCompile Include="..\kaldi-win\src\gmmbin\gmm-acc-mllt.cpp" />
+    <ClCompile Include="..\kaldi-win\src\gmmbin\gmm-acc-stats-twofeats.cpp" />
+    <ClCompile Include="..\kaldi-win\src\gmmbin\gmm-est-fmllr-gpost.cpp" />
+    <ClCompile Include="..\kaldi-win\src\gmmbin\gmm-est-fmllr.cpp" />
+    <ClCompile Include="..\kaldi-win\src\gmmbin\gmm-init-model.cpp" />
+    <ClCompile Include="..\kaldi-win\src\gmmbin\gmm-latgen-faster.cpp" />
+    <ClCompile Include="..\kaldi-win\src\gmmbin\gmm-mixup.cpp" />
+    <ClCompile Include="..\kaldi-win\src\gmmbin\gmm-post-to-gpost.cpp" />
+    <ClCompile Include="..\kaldi-win\src\gmmbin\gmm-rescore-lattice.cpp" />
+    <ClCompile Include="..\kaldi-win\src\gmmbin\gmm-transform-means.cpp" />
+    <ClCompile Include="..\kaldi-win\src\latbin\lattice-1best.cpp" />
+    <ClCompile Include="..\kaldi-win\src\latbin\lattice-add-penalty.cpp" />
+    <ClCompile Include="..\kaldi-win\src\latbin\lattice-align-words-lexicon.cpp" />
+    <ClCompile Include="..\kaldi-win\src\latbin\lattice-align-words.cpp" />
+    <ClCompile Include="..\kaldi-win\src\latbin\lattice-best-path.cpp" />
+    <ClCompile Include="..\kaldi-win\src\latbin\lattice-depth-per-frame.cpp" />
+    <ClCompile Include="..\kaldi-win\src\latbin\lattice-determinize-pruned.cpp" />
+    <ClCompile Include="..\kaldi-win\src\latbin\lattice-mbr-decode.cpp" />
+    <ClCompile Include="..\kaldi-win\src\latbin\lattice-prune.cpp" />
+    <ClCompile Include="..\kaldi-win\src\latbin\lattice-scale.cpp" />
+    <ClCompile Include="..\kaldi-win\src\latbin\lattice-to-post.cpp" />
+    <ClCompile Include="..\kaldi-win\src\latbin\linear-to-nbest.cpp" />
+    <ClCompile Include="..\kaldi-win\src\latbin\nbest-to-prons.cpp" />
+    <ClCompile Include="..\kaldi-win\utility\Utility2.cpp" />
+    <ClCompile Include="..\minizip\unzipper.cpp" />
+    <ClCompile Include="..\minizip\zipper.cpp" />
+    <ClCompile Include="..\mitlm\estimate-ngram.cpp" />
+    <ClCompile Include="..\mitlm\evaluate-ngram.cpp" />
+    <ClCompile Include="..\mitlm\interpolate-ngram.cpp" />
+    <ClCompile Include="..\mitlm\InterpolatedNgramLM.cpp" />
+    <ClCompile Include="..\mitlm\KneserNeySmoothing.cpp" />
+    <ClCompile Include="..\mitlm\Lattice.cpp" />
+    <ClCompile Include="..\mitlm\MaxLikelihoodSmoothing.cpp" />
+    <ClCompile Include="..\mitlm\NgramLM.cpp" />
+    <ClCompile Include="..\mitlm\NgramModel.cpp" />
+    <ClCompile Include="..\mitlm\NgramVector.cpp" />
+    <ClCompile Include="..\mitlm\PerplexityOptimizer.cpp" />
+    <ClCompile Include="..\mitlm\Smoothing.cpp" />
+    <ClCompile Include="..\mitlm\util\CommandOptions.cpp" />
+    <ClCompile Include="..\mitlm\util\Logger.cpp" />
+    <ClCompile Include="..\mitlm\util\RefCounter.cpp" />
+    <ClCompile Include="..\mitlm\Vocab.cpp" />
+    <ClCompile Include="..\mitlm\WordErrorRateOptimizer.cpp" />
+    <ClCompile Include="..\phonetisaurus\LatticePruner.cpp" />
+    <ClCompile Include="..\phonetisaurus\M2MFstAligner.cpp" />
+    <ClCompile Include="..\phonetisaurus\phonetisaurus-align.cpp" />
+    <ClCompile Include="..\phonetisaurus\phonetisaurus-arpa2wfst.cpp" />
+    <ClCompile Include="..\phonetisaurus\phonetisaurus-g2pfst.cpp" />
+    <ClCompile Include="..\phonetisaurus\Phonetisaurus.cpp" />
+    <ClCompile Include="..\phonetisaurus\utilp.cpp" />
+    <ClCompile Include="dllmain.cpp" />
+    <ClCompile Include="VoiceBridge.cpp" />
+    <ClCompile Include="stdafx.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\kaldi-win\scr\steps\compute_cmvn_stats.cpp" />
+    <ClCompile Include="..\kaldi-win\scr\steps\diagnostic\analyze_alignments.cpp" />
+    <ClCompile Include="..\kaldi-win\scr\steps\diagnostic\analyze_phone_length_stats.cpp" />
+    <ClCompile Include="..\kaldi-win\scr\steps\train_gmm_mono.cpp" />
+    <ClCompile Include="..\kaldi-win\scr\utils\add_lex_disambig.cpp" />
+    <ClCompile Include="..\kaldi-win\scr\utils\apply_map.cpp" />
+    <ClCompile Include="..\kaldi-win\scr\utils\filter_scp.cpp" />
+    <ClCompile Include="..\kaldi-win\scr\utils\filter_scps.cpp" />
+    <ClCompile Include="..\kaldi-win\scr\utils\fix_data_dir.cpp" />
+    <ClCompile Include="..\kaldi-win\scr\utils\lang\internal\apply_unk_lm.cpp" />
+    <ClCompile Include="..\kaldi-win\scr\utils\split_data.cpp" />
+    <ClCompile Include="..\kaldi-win\scr\utils\utt2spk_to_spk2utt.cpp" />
+    <ClCompile Include="..\kaldi-win\src\bin\ali-to-phones.cpp" />
+    <ClCompile Include="..\kaldi-win\src\bin\align-equal-compiled.cpp" />
+    <ClCompile Include="..\kaldi-win\src\bin\compile-train-graphs.cpp" />
+    <ClCompile Include="..\kaldi-win\src\bin\copy-matrix.cpp" />
+    <ClCompile Include="..\kaldi-win\src\featbin\add-deltas.cpp" />
+    <ClCompile Include="..\kaldi-win\src\featbin\apply-cmvn.cpp" />
+    <ClCompile Include="..\kaldi-win\src\featbin\compute-cmvn-stats-two-channel.cpp" />
+    <ClCompile Include="..\kaldi-win\src\featbin\compute-cmvn-stats.cpp" />
+    <ClCompile Include="..\kaldi-win\src\featbin\compute-mfcc-feats.cpp" />
+    <ClCompile Include="..\kaldi-win\src\featbin\copy-feats.cpp" />
+    <ClCompile Include="..\kaldi-win\src\featbin\extract-segments.cpp" />
+    <ClCompile Include="..\kaldi-win\src\featbin\feat-to-dim.cpp" />
+    <ClCompile Include="..\kaldi-win\src\featbin\modify-cmvn-stats.cpp" />
+    <ClCompile Include="..\kaldi-win\src\featbin\subset-feats.cpp" />
+    <ClCompile Include="..\kaldi-win\src\gmmbin\gmm-acc-stats-ali.cpp" />
+    <ClCompile Include="..\kaldi-win\src\gmmbin\gmm-align-compiled.cpp" />
+    <ClCompile Include="..\kaldi-win\src\gmmbin\gmm-boost-silence.cpp" />
+    <ClCompile Include="..\kaldi-win\src\gmmbin\gmm-est.cpp" />
+    <ClCompile Include="..\kaldi-win\src\gmmbin\gmm-info.cpp" />
+    <ClCompile Include="..\kaldi-win\src\gmmbin\gmm-init-mono.cpp" />
+    <ClCompile Include="..\kaldi-win\src\gmmbin\gmm-sum-accs.cpp" />
+    <ClCompile Include="..\kaldi-win\src\lmbin\arpa2fst.cpp" />
+    <ClCompile Include="..\kaldi-win\scr\utils\lang\check_g_properties.cpp" />
+    <ClCompile Include="..\kaldi-win\src\fstbin\fstaddselfloops.cpp" />
+    <ClCompile Include="..\kaldi-win\src\fstbin\fstarcsort.cpp" />
+    <ClCompile Include="..\kaldi-win\src\fstbin\fstcompile.cpp" />
+    <ClCompile Include="..\kaldi-win\src\fstbin\fstcompose.cpp" />
+    <ClCompile Include="..\kaldi-win\src\fstbin\fstdeterminizestar.cpp" />
+    <ClCompile Include="..\kaldi-win\src\fstbin\fstinfo.cpp" />
+    <ClCompile Include="..\kaldi-win\src\fstbin\fstinvert.cpp" />
+    <ClCompile Include="..\kaldi-win\src\fstbin\fstisstochastic.cpp" />
+    <ClCompile Include="..\kaldi-win\src\fstbin\fstprint.cpp" />
+    <ClCompile Include="..\kaldi-win\src\fstbin\fstproject.cpp" />
+    <ClCompile Include="..\kaldi-win\src\fstbin\fstrandgen.cpp" />
+    <ClCompile Include="..\kaldi-win\src\fstbin\fstreplace.cpp" />
+    <ClCompile Include="..\kaldi-win\src\fstbin\fstrmepsilon.cpp" />
+    <ClCompile Include="..\kaldi-win\src\fstbin\fsttablecompose.cpp" />
+    <ClCompile Include="..\kaldi-win\src\fstbin\fsttopsort.cpp" />
+    <ClCompile Include="..\kaldi-win\scr\utils\gen_topo.cpp" />
+    <ClCompile Include="..\kaldi-win\utility\strvec2arg.cpp" />
+    <ClCompile Include="..\kaldi-win\utility\TwinLoggerMT.cpp" />
+    <ClCompile Include="..\kaldi-win\scr\utils\make_lexicon_fst.cpp" />
+    <ClCompile Include="..\kaldi-win\scr\utils\make_lexicon_fst_silprob.cpp" />
+    <ClCompile Include="..\kaldi-win\scr\steps\make_mfcc.cpp" />
+    <ClCompile Include="..\kaldi-win\scr\utils\lang\internal\modify_unk_pron.cpp" />
+    <ClCompile Include="..\kaldi-win\scr\Params.cpp" />
+    <ClCompile Include="..\kaldi-win\scr\utils\prepare_data.cpp" />
+    <ClCompile Include="..\kaldi-win\scr\utils\prepare_lang.cpp" />
+    <ClCompile Include="..\kaldi-win\scr\utils\spk2utt_to_utt2spk.cpp" />
+    <ClCompile Include="..\kaldi-win\scr\utils\split_scp.cpp" />
+    <ClCompile Include="..\kaldi-win\scr\utils\sym2int.cpp" />
+    <ClCompile Include="..\kaldi-win\scr\util.cpp" />
+    <ClCompile Include="..\kaldi-win\utility\Utility.cpp" />
+    <ClCompile Include="..\kaldi-win\scr\utils\validate_data_dir.cpp" />
+    <ClCompile Include="..\kaldi-win\scr\utils\validate_dict_dir.cpp" />
+    <ClCompile Include="..\kaldi-win\scr\utils\lang\validate_disambig_sym_file.cpp" />
+    <ClCompile Include="..\kaldi-win\scr\utils\validate_lang.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="VoiceBridge.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\mitlm\vector\DenseVector.tcc" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

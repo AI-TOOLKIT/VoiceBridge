@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.1" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{14D25620-02E3-4ECE-967C-F75E3BAF0711}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
+    <RootNamespace>kaldinnet3</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v141</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
+    <Import Project="..\..\..\..\SettingsVoiceBridge.props" />
+    <Import Project="..\kaldiwin.props" />
+    <Import Project="..\openfstwin_debug.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+    <Import Project="..\..\..\..\SettingsVoiceBridge.props" />
+    <Import Project="..\kaldiwin.props" />
+    <Import Project="..\openfstwin_release.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.14393.0</_ProjectFileVersion>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ProgramDataBaseFileName>$(OutDir)$(ProjectName).pdb</ProgramDataBaseFileName>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <Optimization>MaxSpeed</Optimization>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ProgramDataBaseFileName>$(OutDir)$(ProjectName).pdb</ProgramDataBaseFileName>
+      <WholeProgramOptimization>false</WholeProgramOptimization>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\src\nnet3\am-nnet-simple.cc" />
+    <ClCompile Include="..\..\..\src\nnet3\attention.cc" />
+    <ClCompile Include="..\..\..\src\nnet3\convolution.cc" />
+    <ClCompile Include="..\..\..\src\nnet3\decodable-online-looped.cc" />
+    <ClCompile Include="..\..\..\src\nnet3\decodable-simple-looped.cc" />
+    <ClCompile Include="..\..\..\src\nnet3\discriminative-supervision.cc" />
+    <ClCompile Include="..\..\..\src\nnet3\discriminative-training.cc" />
+    <ClCompile Include="..\..\..\src\nnet3\natural-gradient-online.cc" />
+    <ClCompile Include="..\..\..\src\nnet3\nnet-am-decodable-simple.cc" />
+    <ClCompile Include="..\..\..\src\nnet3\nnet-analyze.cc" />
+    <ClCompile Include="..\..\..\src\nnet3\nnet-attention-component.cc" />
+    <ClCompile Include="..\..\..\src\nnet3\nnet-chain-combine.cc" />
+    <ClCompile Include="..\..\..\src\nnet3\nnet-chain-diagnostics.cc" />
+    <ClCompile Include="..\..\..\src\nnet3\nnet-chain-example.cc" />
+    <ClCompile Include="..\..\..\src\nnet3\nnet-chain-training.cc" />
+    <ClCompile Include="..\..\..\src\nnet3\nnet-combine.cc" />
+    <ClCompile Include="..\..\..\src\nnet3\nnet-common.cc" />
+    <ClCompile Include="..\..\..\src\nnet3\nnet-compile-looped.cc" />
+    <ClCompile Include="..\..\..\src\nnet3\nnet-compile-utils.cc" />
+    <ClCompile Include="..\..\..\src\nnet3\nnet-compile.cc" />
+    <ClCompile Include="..\..\..\src\nnet3\nnet-component-itf.cc" />
+    <ClCompile Include="..\..\..\src\nnet3\nnet-computation-graph.cc" />
+    <ClCompile Include="..\..\..\src\nnet3\nnet-computation.cc" />
+    <ClCompile Include="..\..\..\src\nnet3\nnet-compute.cc" />
+    <ClCompile Include="..\..\..\src\nnet3\nnet-convolutional-component.cc" />
+    <ClCompile Include="..\..\..\src\nnet3\nnet-descriptor.cc" />
+    <ClCompile Include="..\..\..\src\nnet3\nnet-diagnostics.cc" />
+    <ClCompile Include="..\..\..\src\nnet3\nnet-discriminative-diagnostics.cc" />
+    <ClCompile Include="..\..\..\src\nnet3\nnet-discriminative-example.cc" />
+    <ClCompile Include="..\..\..\src\nnet3\nnet-discriminative-training.cc" />
+    <ClCompile Include="..\..\..\src\nnet3\nnet-example-utils.cc" />
+    <ClCompile Include="..\..\..\src\nnet3\nnet-example.cc" />
+    <ClCompile Include="..\..\..\src\nnet3\nnet-general-component.cc" />
+    <ClCompile Include="..\..\..\src\nnet3\nnet-graph.cc" />
+    <ClCompile Include="..\..\..\src\nnet3\nnet-nnet.cc" />
+    <ClCompile Include="..\..\..\src\nnet3\nnet-optimize-utils.cc" />
+    <ClCompile Include="..\..\..\src\nnet3\nnet-optimize.cc" />
+    <ClCompile Include="..\..\..\src\nnet3\nnet-parse.cc" />
+    <ClCompile Include="..\..\..\src\nnet3\nnet-simple-component.cc" />
+    <ClCompile Include="..\..\..\src\nnet3\nnet-test-utils.cc" />
+    <ClCompile Include="..\..\..\src\nnet3\nnet-training.cc" />
+    <ClCompile Include="..\..\..\src\nnet3\nnet-utils.cc" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\src\nnet3\am-nnet-simple.h" />
+    <ClInclude Include="..\..\..\src\nnet3\attention.h" />
+    <ClInclude Include="..\..\..\src\nnet3\convolution.h" />
+    <ClInclude Include="..\..\..\src\nnet3\decodable-online-looped.h" />
+    <ClInclude Include="..\..\..\src\nnet3\decodable-simple-looped.h" />
+    <ClInclude Include="..\..\..\src\nnet3\discriminative-supervision.h" />
+    <ClInclude Include="..\..\..\src\nnet3\discriminative-training.h" />
+    <ClInclude Include="..\..\..\src\nnet3\natural-gradient-online.h" />
+    <ClInclude Include="..\..\..\src\nnet3\nnet-am-decodable-simple.h" />
+    <ClInclude Include="..\..\..\src\nnet3\nnet-analyze.h" />
+    <ClInclude Include="..\..\..\src\nnet3\nnet-attention-component.h" />
+    <ClInclude Include="..\..\..\src\nnet3\nnet-chain-combine.h" />
+    <ClInclude Include="..\..\..\src\nnet3\nnet-chain-diagnostics.h" />
+    <ClInclude Include="..\..\..\src\nnet3\nnet-chain-example.h" />
+    <ClInclude Include="..\..\..\src\nnet3\nnet-chain-training.h" />
+    <ClInclude Include="..\..\..\src\nnet3\nnet-combine.h" />
+    <ClInclude Include="..\..\..\src\nnet3\nnet-common.h" />
+    <ClInclude Include="..\..\..\src\nnet3\nnet-compile-looped.h" />
+    <ClInclude Include="..\..\..\src\nnet3\nnet-compile-utils.h" />
+    <ClInclude Include="..\..\..\src\nnet3\nnet-compile.h" />
+    <ClInclude Include="..\..\..\src\nnet3\nnet-component-itf.h" />
+    <ClInclude Include="..\..\..\src\nnet3\nnet-computation-graph.h" />
+    <ClInclude Include="..\..\..\src\nnet3\nnet-computation.h" />
+    <ClInclude Include="..\..\..\src\nnet3\nnet-compute.h" />
+    <ClInclude Include="..\..\..\src\nnet3\nnet-convolutional-component.h" />
+    <ClInclude Include="..\..\..\src\nnet3\nnet-descriptor.h" />
+    <ClInclude Include="..\..\..\src\nnet3\nnet-diagnostics.h" />
+    <ClInclude Include="..\..\..\src\nnet3\nnet-discriminative-diagnostics.h" />
+    <ClInclude Include="..\..\..\src\nnet3\nnet-discriminative-example.h" />
+    <ClInclude Include="..\..\..\src\nnet3\nnet-discriminative-training.h" />
+    <ClInclude Include="..\..\..\src\nnet3\nnet-example-utils.h" />
+    <ClInclude Include="..\..\..\src\nnet3\nnet-example.h" />
+    <ClInclude Include="..\..\..\src\nnet3\nnet-general-component.h" />
+    <ClInclude Include="..\..\..\src\nnet3\nnet-graph.h" />
+    <ClInclude Include="..\..\..\src\nnet3\nnet-nnet.h" />
+    <ClInclude Include="..\..\..\src\nnet3\nnet-optimize-utils.h" />
+    <ClInclude Include="..\..\..\src\nnet3\nnet-optimize.h" />
+    <ClInclude Include="..\..\..\src\nnet3\nnet-parse.h" />
+    <ClInclude Include="..\..\..\src\nnet3\nnet-simple-component.h" />
+    <ClInclude Include="..\..\..\src\nnet3\nnet-test-utils.h" />
+    <ClInclude Include="..\..\..\src\nnet3\nnet-training.h" />
+    <ClInclude Include="..\..\..\src\nnet3\nnet-utils.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

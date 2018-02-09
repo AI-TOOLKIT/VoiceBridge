@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.1" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{4E91FB73-2A6D-4864-B53B-664D020FDEA6}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
+    <RootNamespace>kaldinnet2</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v141</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
+    <Import Project="..\..\..\..\SettingsVoiceBridge.props" />
+    <Import Project="..\kaldiwin.props" />
+    <Import Project="..\openfstwin_debug.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+    <Import Project="..\..\..\..\SettingsVoiceBridge.props" />
+    <Import Project="..\kaldiwin.props" />
+    <Import Project="..\openfstwin_release.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.14393.0</_ProjectFileVersion>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ProgramDataBaseFileName>$(OutDir)$(ProjectName).pdb</ProgramDataBaseFileName>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <Optimization>MaxSpeed</Optimization>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ProgramDataBaseFileName>$(OutDir)$(ProjectName).pdb</ProgramDataBaseFileName>
+      <WholeProgramOptimization>false</WholeProgramOptimization>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\src\nnet2\am-nnet.cc" />
+    <ClCompile Include="..\..\..\src\nnet2\combine-nnet-fast.cc" />
+    <ClCompile Include="..\..\..\src\nnet2\combine-nnet.cc" />
+    <ClCompile Include="..\..\..\src\nnet2\get-feature-transform.cc" />
+    <ClCompile Include="..\..\..\src\nnet2\mixup-nnet.cc" />
+    <ClCompile Include="..\..\..\src\nnet2\nnet-component.cc" />
+    <ClCompile Include="..\..\..\src\nnet2\nnet-compute-discriminative-parallel.cc" />
+    <ClCompile Include="..\..\..\src\nnet2\nnet-compute-discriminative.cc" />
+    <ClCompile Include="..\..\..\src\nnet2\nnet-compute-online.cc" />
+    <ClCompile Include="..\..\..\src\nnet2\nnet-compute.cc" />
+    <ClCompile Include="..\..\..\src\nnet2\nnet-example-functions.cc" />
+    <ClCompile Include="..\..\..\src\nnet2\nnet-example.cc" />
+    <ClCompile Include="..\..\..\src\nnet2\nnet-fix.cc" />
+    <ClCompile Include="..\..\..\src\nnet2\nnet-functions.cc" />
+    <ClCompile Include="..\..\..\src\nnet2\nnet-limit-rank.cc" />
+    <ClCompile Include="..\..\..\src\nnet2\nnet-nnet.cc" />
+    <ClCompile Include="..\..\..\src\nnet2\nnet-precondition-online.cc" />
+    <ClCompile Include="..\..\..\src\nnet2\nnet-precondition.cc" />
+    <ClCompile Include="..\..\..\src\nnet2\nnet-stats.cc" />
+    <ClCompile Include="..\..\..\src\nnet2\nnet-update-parallel.cc" />
+    <ClCompile Include="..\..\..\src\nnet2\nnet-update.cc" />
+    <ClCompile Include="..\..\..\src\nnet2\online-nnet2-decodable.cc" />
+    <ClCompile Include="..\..\..\src\nnet2\rescale-nnet.cc" />
+    <ClCompile Include="..\..\..\src\nnet2\train-nnet-ensemble.cc" />
+    <ClCompile Include="..\..\..\src\nnet2\train-nnet.cc" />
+    <ClCompile Include="..\..\..\src\nnet2\widen-nnet.cc" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\src\nnet2\am-nnet.h" />
+    <ClInclude Include="..\..\..\src\nnet2\combine-nnet-fast.h" />
+    <ClInclude Include="..\..\..\src\nnet2\combine-nnet.h" />
+    <ClInclude Include="..\..\..\src\nnet2\get-feature-transform.h" />
+    <ClInclude Include="..\..\..\src\nnet2\mixup-nnet.h" />
+    <ClInclude Include="..\..\..\src\nnet2\nnet-component.h" />
+    <ClInclude Include="..\..\..\src\nnet2\nnet-compute-discriminative-parallel.h" />
+    <ClInclude Include="..\..\..\src\nnet2\nnet-compute-discriminative.h" />
+    <ClInclude Include="..\..\..\src\nnet2\nnet-compute-online.h" />
+    <ClInclude Include="..\..\..\src\nnet2\nnet-compute.h" />
+    <ClInclude Include="..\..\..\src\nnet2\nnet-example-functions.h" />
+    <ClInclude Include="..\..\..\src\nnet2\nnet-example.h" />
+    <ClInclude Include="..\..\..\src\nnet2\nnet-fix.h" />
+    <ClInclude Include="..\..\..\src\nnet2\nnet-functions.h" />
+    <ClInclude Include="..\..\..\src\nnet2\nnet-limit-rank.h" />
+    <ClInclude Include="..\..\..\src\nnet2\nnet-nnet.h" />
+    <ClInclude Include="..\..\..\src\nnet2\nnet-precondition-online.h" />
+    <ClInclude Include="..\..\..\src\nnet2\nnet-precondition.h" />
+    <ClInclude Include="..\..\..\src\nnet2\nnet-stats.h" />
+    <ClInclude Include="..\..\..\src\nnet2\nnet-update-parallel.h" />
+    <ClInclude Include="..\..\..\src\nnet2\nnet-update.h" />
+    <ClInclude Include="..\..\..\src\nnet2\online-nnet2-decodable.h" />
+    <ClInclude Include="..\..\..\src\nnet2\rescale-nnet.h" />
+    <ClInclude Include="..\..\..\src\nnet2\train-nnet-ensemble.h" />
+    <ClInclude Include="..\..\..\src\nnet2\train-nnet.h" />
+    <ClInclude Include="..\..\..\src\nnet2\widen-nnet.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

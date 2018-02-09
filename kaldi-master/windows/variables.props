@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ImportGroup Label="PropertySheets" />
+  <PropertyGroup Label="UserMacros">
+    <!-- Change the following paths so they are correct on your machine -->
+    <!-- Do not modify anything before this line -->
+    <MKLDIR>D:\IntelSWTools\compilers_and_libraries_2018\windows\mkl</MKLDIR>
+    <OPENBLASDIR>D:\_WORK2\KALDI</OPENBLASDIR>
+    <OPENFST>D:\_WORK2\KALDI\openfst-win-1.6</OPENFST>
+    <OPENFSTLIB>D:\_WORK2\KALDI\openfst-win-1.6\x64</OPENFSTLIB>
+    <!-- Do not modify anything after this line -->
+  </PropertyGroup>
+  <PropertyGroup />
+  <ItemDefinitionGroup />
+  <ItemGroup>
+    <BuildMacro Include="OPENBLASDIR">
+      <Value>$(OPENBLASDIR)</Value>
+      <EnvironmentVariable>true</EnvironmentVariable>
+    </BuildMacro>
+    <BuildMacro Include="OPENFST">
+      <Value>$(OPENFST)</Value>
+      <EnvironmentVariable>true</EnvironmentVariable>
+    </BuildMacro>
+    <BuildMacro Include="OPENFSTLIB">
+      <Value>$(OPENFSTLIB)</Value>
+      <EnvironmentVariable>true</EnvironmentVariable>
+    </BuildMacro>
+    <BuildMacro Include="MKLDIR">
+      <Value>$(MKLDIR)</Value>
+      <EnvironmentVariable>true</EnvironmentVariable>
+    </BuildMacro>
+  </ItemGroup>
+</Project>
