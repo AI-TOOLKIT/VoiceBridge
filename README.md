@@ -54,7 +54,7 @@ VoiceBridge can be considered to be the MS Windows counterpart of KALDI (speech 
 	**Important**: Whole program optimization must be OFF for the library!
  
 	- **e.** Compile the VoiceBridge DLL located in ‘VoiceBridge\VoiceBridge\VoiceBridge’.
-	**Important**: Whole program optimization must be OFF! This option could result in 2-3% speed improvement but then the DLL should be cut in peaces because VS can not handle the optimization of so much code.
+	**Important**: Whole program optimization must be OFF! This option could result in 2-3% speed improvement but then the DLL should then be cut in peaces because VS can not handle the optimization of so much code.
 
 		Note: Please note that there is a shortcut to all of the above mentioned VS2017 projects in the root directory of the distribution.
  
