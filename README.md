@@ -10,7 +10,7 @@ VoiceBridge can be considered to be the MS Windows counterpart of KALDI (speech 
 
 2.	**The aim of VoiceBridge is to make writing high quality professional and fast speech recognition software very easy**. VoiceBridge does not include all of the available models in Kaldi but a selection of models which provide very good accuracy and are fast. Kaldi is a research system and will always have more models available. VoiceBridge may add new models in the future if they provide significant accuracy and/or speed improvement.
 
-3.	VoiceBridge includes the following **extra modules **not included in Kaldi:
+3.	VoiceBridge includes the following **extra modules** not included in Kaldi:
     - Automatic language model generation.
     - Automatic pronunciation lexicon generation.
 
