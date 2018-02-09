@@ -63,7 +63,8 @@ VoiceBridge can be considered to be the MS Windows counterpart of KALDI (speech 
 
 			fs::path project(exepath.branch_path() / "../../../../../VoiceBridgeProjects/YesNo");
 
-		Do this after downloading the example projects from the Github repository ‘VoiceBridgeProjects’ (the data is ~600 MB). If you put the example projects into a directory called VoiceBridgeProjects at the same level as the VoiceBridge directory (e.g.: C:\VoiceBridge and C:\ VoiceBridgeProjects) then you do not need to change anything. In this case the input directory for the Yes-No project would be located in: ‘C:\VoiceBridgeProjects\YesNo\input’.
+		Do this after downloading the example projects from the Github repository: ‘[VoiceBridgeProjects](https://github.com/AI-TOOLKIT/VoiceBridgeProjects)’ (https://github.com/AI-TOOLKIT/VoiceBridgeProjects the data is ~600 MB).
+If you put the example projects into a directory called VoiceBridgeProjects at the same level as the VoiceBridge directory (e.g.: C:\VoiceBridge and C:\ VoiceBridgeProjects) then you do not need to change anything. In this case the input directory for the Yes-No project would be located in: ‘C:\VoiceBridgeProjects\YesNo\input’.
 
 	- **g.** Compile the test project located in ‘VoiceBridge\VoiceBridge\TestDll’.
 
