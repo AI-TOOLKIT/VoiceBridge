@@ -31,9 +31,9 @@ VoiceBridge can be considered to be the MS Windows counterpart of KALDI (speech 
 
 6.	VoiceBridge includes two complete **examples** which demonstrate how to use the library. Both examples are also available in Kaldi. This makes the learning of VoiceBridge for Kaldi users much easier.
 
-    - One of the examples is the Yes-No example. This is a very simple speech recognition example in which we train a model to recognize people saying ‘yes’ or ‘no’. The WER (word error rate) of this example in VoiceBridge is 2% (98% accuracy) and the training + testing takes about 8 seconds.
+    - One of the examples is the Yes-No example. This is a very simple speech recognition example in which we train a model to recognize people saying ‘yes’ or ‘no’. The WER (word error rate) of this example in VoiceBridge is 2% (98% accuracy) and the training + testing takes about 8 seconds (with 4 processor cores).
 
-    - The second example is the so called LibriSpeech example, a real world speech recognition application in which several hours of English speech learning and recognition are included. The WER (word error rate) of this example in VoiceBridge is 5.92% (94% accuracy) and the training + testing takes about 25 minutes.
+    - The second example is the so called LibriSpeech example, a real world speech recognition application in which several hours of English speech learning and recognition are included. The WER (word error rate) of this example in VoiceBridge is 5.92% (94% accuracy) and the training + testing takes about 25 minutes (with 4 processor cores).
 
 	Both examples are ready to use code templates for your speech recognition projects! More examples may be added later.
 
