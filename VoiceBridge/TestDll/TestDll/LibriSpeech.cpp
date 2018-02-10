@@ -781,7 +781,7 @@ int TestLibriSpeech_TrainDeltaSAT(std::vector<std::string> lms)
 	if (numthreads < 1) numthreads = 1;
 
 	//------------------------------------------------------------------------------------------------------------------------->
-	//	LDA+MLLT+SAT model built upon the delta + delta-delta
+	//	DELTA+SAT model built upon the delta + delta-delta
 	/*
 	This does Speaker Adapted Training (SAT), i.e. train on fMLLR-adapted features. It can be done on top of either
 	LDA+MLLT, or delta + delta-delta features. If there are no transforms supplied in the alignment directory,
@@ -796,11 +796,6 @@ int TestLibriSpeech_TrainDeltaSAT(std::vector<std::string> lms)
 		return -1;
 	}
 
-	/*
-	LDA+MLLT refers to the way we transform the features after computing the MFCCs: we splice across several frames,
-	reduce the dimension (to 40 by default) using Linear Discriminant Analysis), and then later estimate, over
-	multiple iterations, a diagonalizing transform known as MLLT or CTC.
-	*/
 	bool needToRetrainModel =
 		FORCE_RETRAIN_MODEL ||
 		NeedToRetrainModel(voicebridgeParams.pth_data / voicebridgeParams.train_base_name / "tri3c",
