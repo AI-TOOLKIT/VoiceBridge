@@ -1,3 +1,4 @@
+NOTE: this folder is approximately 200MB.
 # VoiceBridge Getting Started Guide
 ![VoiceBridge logo](https://1.bp.blogspot.com/-I55H8n_ja5I/Wn1x0EuTXNI/AAAAAAAAA1Y/nks4U3lkISMPyi2PuZV3PJ449YPDaTo6wCLcBGAs/s1600/logo1370X500.png)
 VoiceBridge is an open source (AI-TOOLKIT Open Source License - Apache 2.0 based, very permissive and allows commercial use) speech recognition C++ toolkit optimized for MS Windows 64-bit (can be easily modified to compile on other operating systems). VoiceBridge fills the gap for MS Windows speech recognition developers.
