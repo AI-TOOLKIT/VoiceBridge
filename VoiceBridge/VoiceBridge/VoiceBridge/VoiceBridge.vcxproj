@@ -101,6 +101,7 @@
     <ClInclude Include="..\..\..\kaldi-master\src\lm\arpa-lm-compiler.h" />
     <ClInclude Include="..\boost\filesystem\src\windows_file_codecvt.hpp" />
     <ClInclude Include="..\boost\regex\src\internals.hpp" />
+    <ClInclude Include="..\kaldi-win\scr\kaldi_scr2.h" />
     <ClInclude Include="..\kaldi-win\scr\Params.h" />
     <ClInclude Include="..\kaldi-win\utility\Utility2.h" />
     <ClInclude Include="..\minizip\unzipper.h" />
@@ -264,6 +265,7 @@
     <ClCompile Include="..\kaldi-win\scr\steps\diagnostic\analyze_lats.cpp" />
     <ClCompile Include="..\kaldi-win\scr\steps\diagnostic\analyze_lattice_depth_stats.cpp" />
     <ClCompile Include="..\kaldi-win\scr\steps\get_prons.cpp" />
+    <ClCompile Include="..\kaldi-win\scr\steps\make_mfcc_pitch.cpp" />
     <ClCompile Include="..\kaldi-win\scr\steps\scoring\score_kaldi_cer.cpp" />
     <ClCompile Include="..\kaldi-win\scr\steps\scoring\score_kaldi_wer.cpp" />
     <ClCompile Include="..\kaldi-win\scr\steps\train_deltas.cpp" />
@@ -296,6 +298,9 @@
     <ClCompile Include="..\kaldi-win\src\bin\tree-info.cpp" />
     <ClCompile Include="..\kaldi-win\src\bin\weight-silence-post.cpp" />
     <ClCompile Include="..\kaldi-win\src\featbin\compose-transforms.cpp" />
+    <ClCompile Include="..\kaldi-win\src\featbin\compute-kaldi-pitch-feats.cpp" />
+    <ClCompile Include="..\kaldi-win\src\featbin\paste-feats.cpp" />
+    <ClCompile Include="..\kaldi-win\src\featbin\process-kaldi-pitch-feats.cpp" />
     <ClCompile Include="..\kaldi-win\src\featbin\splice-feats.cpp" />
     <ClCompile Include="..\kaldi-win\src\featbin\transform-feats.cpp" />
     <ClCompile Include="..\kaldi-win\src\fstbin\fstcomposecontext.cpp" />

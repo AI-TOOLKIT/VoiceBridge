@@ -83,15 +83,20 @@ int ComputeMFCCFeats(int argc, char *argv[], fs::ofstream & file_log)
 			utt2spk_rspecifier);
 
 		if (output_format == "kaldi") {
-			if (!kaldi_writer.Open(output_wspecifier))
+			if (!kaldi_writer.Open(output_wspecifier)) {
 				KALDI_ERR << "Could not initialize output with wspecifier " << output_wspecifier;
+				return -1; //VB
+			}
 		}
 		else if (output_format == "htk") {
-			if (!htk_writer.Open(output_wspecifier))
+			if (!htk_writer.Open(output_wspecifier)) {
 				KALDI_ERR << "Could not initialize output with wspecifier " << output_wspecifier;
+				return -1; //VB
+			}
 		}
 		else {
 			KALDI_ERR << "Invalid output_format string " << output_format;
+			return -1; //VB
 		}
 
 		int32 num_utts = 0, num_success = 0;

@@ -73,7 +73,7 @@ int ComputeCmvnStats(int argc, char *argv[], fs::ofstream & file_log)
     if (po.NumArgs() != 2) {
 		//po.PrintUsage();
 		//exit(1);
-		KALDI_ERR << "wrong arguments.";
+		KALDI_ERR << "Wrong arguments.";
 		return -1;
     }
 
@@ -140,9 +140,11 @@ int ComputeCmvnStats(int argc, char *argv[], fs::ofstream & file_log)
         }
       }
     } else { // accumulate global stats
-      if (spk2utt_rspecifier != "")
-        KALDI_ERR << "--spk2utt option not compatible with wxfilename as output "
-                   << "(did you forget ark:?)";
+		if (spk2utt_rspecifier != "") {
+			KALDI_ERR << "--spk2utt option not compatible with wxfilename as output "
+				<< "(did you forget ark:?)";
+			return -1; //VB
+		}
       std::string wxfilename = wspecifier_or_wxfilename;
       bool is_init = false;
       Matrix<double> stats;

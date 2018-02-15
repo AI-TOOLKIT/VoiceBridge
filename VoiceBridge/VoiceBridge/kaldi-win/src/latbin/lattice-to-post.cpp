@@ -60,8 +60,10 @@ int LatticeToPost(int argc, char *argv[], fs::ofstream & file_log) {
 			return -1;
 		}
 
-		if (acoustic_scale == 0.0)
-			KALDI_ERR << "Do not use a zero acoustic scale (cannot be inverted)";
+		if (acoustic_scale == 0.0) {
+			KALDI_ERR << "Do not use a zero acoustic scale (cannot be inverted).";
+			return -1; //VB
+		}
 
 		std::string lats_rspecifier = po.GetArg(1),
 			posteriors_wspecifier = po.GetArg(2),
@@ -89,8 +91,10 @@ int LatticeToPost(int argc, char *argv[], fs::ofstream & file_log) {
 
 			kaldi::uint64 props = lat.Properties(fst::kFstProperties, false);
 			if (!(props & fst::kTopSorted)) {
-				if (fst::TopSort(&lat) == false)
+				if (fst::TopSort(&lat) == false) {
 					KALDI_ERR << "Cycles detected in lattice.";
+					return -1; //VB
+				}
 			}
 
 			kaldi::Posterior post;

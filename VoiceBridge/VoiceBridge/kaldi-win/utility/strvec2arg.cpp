@@ -15,14 +15,14 @@ Based on : http://www.dreamincode.net/forums/topic/251269-converting-vector-stri
 StrVec2Arg::StrVec2Arg(const std::string progname) 
 	: size(0), list(NULL), program_name(progname)
 {
-	if (program_name == "") program_name = "KaldiWin";
+	if (program_name == "") program_name = "VoiceBridge";
 }
 
 StrVec2Arg::StrVec2Arg(const std::vector< std::string > &v, const std::string progname)
 						: size(v.size()+1), program_name(progname) //NOTE: +1 for program name
 {
 	list = new char *[size];
-	if (program_name == "") program_name = "KaldiWin";
+	if (program_name == "") program_name = "VoiceBridge";
 	list[0] = const_cast< char* >(program_name.c_str());
 	for (int i = 1; i<size; ++i) {
 		list[i] = const_cast< char* >(v[i-1].c_str());

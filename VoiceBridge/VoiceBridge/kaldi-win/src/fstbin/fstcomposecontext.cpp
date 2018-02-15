@@ -100,7 +100,7 @@ int fstcomposecontext(int argc, char *argv[]) {
     if (po.NumArgs() < 1 || po.NumArgs() > 3) {
 		//po.PrintUsage();
 		//exit(1);
-		KALDI_ERR << "wrong arguments.";
+		KALDI_ERR << "Wrong arguments.";
 		return -1;
     }
 
@@ -110,15 +110,19 @@ int fstcomposecontext(int argc, char *argv[]) {
 
     VectorFst<StdArc> *fst = ReadFstKaldi(fst_in_filename);
 
-    if ( (disambig_wxfilename != "") && (disambig_rxfilename == "") )
-      KALDI_ERR << "fstcomposecontext: cannot specify --write-disambig-syms if "
-          "not specifying --read-disambig-syms\n";
+	if ((disambig_wxfilename != "") && (disambig_rxfilename == "")) {
+		KALDI_ERR << "fstcomposecontext: cannot specify --write-disambig-syms if "
+			"not specifying --read-disambig-syms\n";
+		return -1; //VB
+	}
 
     std::vector<int32> disambig_in;
     if (disambig_rxfilename != "")
-      if (!ReadIntegerVectorSimple(disambig_rxfilename, &disambig_in))
-        KALDI_ERR << "fstcomposecontext: Could not read disambiguation symbols from "
-                  << PrintableRxfilename(disambig_rxfilename);
+		if (!ReadIntegerVectorSimple(disambig_rxfilename, &disambig_in)) {
+			KALDI_ERR << "fstcomposecontext: Could not read disambiguation symbols from "
+				<< PrintableRxfilename(disambig_rxfilename);
+			return -1; //VB
+		}
 
     if (disambig_in.empty()) {
       KALDI_WARN << "Disambiguation symbols list is empty; this likely "
@@ -141,7 +145,7 @@ int fstcomposecontext(int argc, char *argv[]) {
       if (!WriteIntegerVectorSimple(disambig_wxfilename, disambig_out)) {
 		KALDI_ERR << "fstcomposecontext: Could not write disambiguation symbols to "
                   << PrintableWxfilename(disambig_wxfilename) << '\n';
-		return 1;
+		return -1; //VB return 1;
       }
     }
 

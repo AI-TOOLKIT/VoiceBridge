@@ -119,6 +119,7 @@ int BuildTree(int argc, char *argv[], fs::ofstream & file_log) {
 			}
 			catch (const std::exception &e) {
 				KALDI_ERR << "Error reading questions file " << questions_filename << ", error is: " << e.what();
+				return -1; //VB
 			}
 		}
 
@@ -178,9 +179,11 @@ int BuildTree(int argc, char *argv[], fs::ofstream & file_log) {
 				if (!std::binary_search(phones_vec.begin(), phones_vec.end(), all_phones[i]))
 					unseen_phones.push_back(all_phones[i]);
 			for (size_t i = 0; i < phones_vec.size(); i++)
-				if (!std::binary_search(all_phones.begin(), all_phones.end(), phones_vec[i]))
+				if (!std::binary_search(all_phones.begin(), all_phones.end(), phones_vec[i])) {
 					KALDI_ERR << "Phone " << (phones_vec[i])
-					<< " appears in stats but is not listed in roots file.";
+						<< " appears in stats but is not listed in roots file.";
+					return -1; //VB
+				}
 			if (!unseen_phones.empty()) {
 				std::ostringstream ss;
 				for (size_t i = 0; i < unseen_phones.size(); i++)

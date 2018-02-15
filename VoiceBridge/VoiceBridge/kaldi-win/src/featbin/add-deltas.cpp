@@ -53,9 +53,11 @@ int AddDeltas(int argc, char *argv[]) {
       }
       Matrix<BaseFloat> new_feats;
       if (truncate != 0) {
-        if (truncate > feats.NumCols())
-          KALDI_ERR << "Cannot truncate features as dimension " << feats.NumCols()
-                    << " is smaller than truncation dimension.";
+		  if (truncate > feats.NumCols()) {
+			  KALDI_ERR << "Cannot truncate features as dimension " << feats.NumCols()
+				  << " is smaller than truncation dimension.";
+			  return -1; //VB
+		  }
         SubMatrix<BaseFloat> feats_sub(feats, 0, feats.NumRows(), 0, truncate);
         ComputeDeltas(opts, feats_sub, &new_feats);
       } else

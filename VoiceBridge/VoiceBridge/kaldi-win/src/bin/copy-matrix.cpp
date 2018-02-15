@@ -72,10 +72,12 @@ int CopyMatrix(int argc, char *argv[], fs::ofstream & file_log) {
 		return -1;
     }
 
-    if ( (apply_log && apply_exp) || (apply_softmax_per_row && apply_exp) ||
-          (apply_softmax_per_row && apply_log) )
-      KALDI_ERR << "Only one of apply-log, apply-exp and "
-                << "apply-softmax-per-row can be given";
+	if ((apply_log && apply_exp) || (apply_softmax_per_row && apply_exp) ||
+		(apply_softmax_per_row && apply_log)) {
+		KALDI_ERR << "Only one of apply-log, apply-exp and "
+			<< "apply-softmax-per-row can be given";
+		return -1; //VB
+	}
 
     std::string matrix_in_fn = po.GetArg(1),
         matrix_out_fn = po.GetArg(2);
@@ -89,8 +91,10 @@ int CopyMatrix(int argc, char *argv[], fs::ofstream & file_log) {
         (ClassifyWspecifier(matrix_out_fn, NULL, NULL, NULL)
          != kNoWspecifier);
 
-    if (in_is_rspecifier != out_is_wspecifier)
-      KALDI_ERR << "Cannot mix archives with regular files (copying matrices)";
+	if (in_is_rspecifier != out_is_wspecifier) {
+		KALDI_ERR << "Cannot mix archives with regular files (copying matrices)";
+		return -1; //VB
+	}
 
     if (!in_is_rspecifier) {
       Matrix<BaseFloat> mat;

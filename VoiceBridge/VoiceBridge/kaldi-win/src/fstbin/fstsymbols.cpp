@@ -66,7 +66,7 @@ int fstsymbols(int argc, char **argv)
 		if (argc > 3) {
 			//ShowUsage();
 			//return 1;
-			KALDI_ERR << "wrong arguments.";
+			KALDI_ERR << "Wrong arguments.";
 			return -1;
 		}
 
@@ -83,6 +83,7 @@ int fstsymbols(int argc, char **argv)
 			}
 			else {
 				KALDI_ERR << argv[0] << ": Saving isymbols but there are no input symbols.";
+				return -1; //VB
 			}
 		}
 
@@ -93,6 +94,7 @@ int fstsymbols(int argc, char **argv)
 			}
 			else {
 				KALDI_ERR << argv[0] << ": Saving osymbols but there are no output symbols.";
+				return -1; //VB
 			}
 		}
 

@@ -44,13 +44,16 @@ VOICEBRIDGE_API int MakeMfcc(
 		{
 			fs::create_directory(datadir / "backup");
 			LOGTW_INFO << "Moving data/feats.scp to data/backup in " << datadir.string() << ".";
-			fs::copy_file(datadir / "feats.scp", datadir / "backup\\feats.scp", fs::copy_option::overwrite_if_exists);
+			fs::copy_file(datadir / "feats.scp", datadir / "backup" / "feats.scp", fs::copy_option::overwrite_if_exists);
 			fs::remove(datadir / "feats.scp");
 		}
 	} catch (const std::exception& ex)	{
 		LOGTW_ERROR << " " << ex.what() << ".";
 		return -1;
 	}
+
+	//required:
+	if (CheckFileExistsAndNotEmpty(mfcc_config, true) < 0) return -1;
 	fs::path scp = datadir / "wav.scp";
 	if (CheckFileExistsAndNotEmpty(scp, true) < 0) return -1;
 
@@ -77,11 +80,6 @@ VOICEBRIDGE_API int MakeMfcc(
 		fs::path dir(mfccdir / ("raw_mfcc_" + name + "." + std::to_string(i) + ".ark"));
 		_fullpaths.push_back(dir);
 	}
-	MSYMLINK msymlinkstorage;
-	//NOTE: in msymlinkstorage the key is the NEW filename and the value is the OLD filename linked to it!
-	//NOTE: not using symbolic links because it needs administrator privilege in Windows!
-	//		using a map instead.  msymlinkstorage should be used manually instead of the symlinks!
-	//if (CreateDataLink(_fullpaths, msymlinkstorage) < 0) return -1;
 
 	std::vector<std::string> write_num_frames_opt;
 	if (write_utt2num_frames) {
@@ -89,10 +87,11 @@ VOICEBRIDGE_API int MakeMfcc(
 		//NOTE: "t:" means text mode
 	}
 
+	//this error file could have been made by a former run
+	DeleteAllMatching(logdir, boost::regex("^(\\.error).*"));
+
 	if (fs::exists(datadir / "segments"))
 	{
-		//TODO:... this part is not yet tested
-
 		LOGTW_INFO << "Segments file exists: using that.";
 		std::vector<fs::path> split_segments;
 		for (int n = 1; n <= nj; n++) {
@@ -100,17 +99,11 @@ VOICEBRIDGE_API int MakeMfcc(
 		}
 		if (SplitScp(datadir / "segments", split_segments) < 0) return -1;
 
-		try	{
-			fs::remove(logdir / "error");
-		} catch (const std::exception&) {/*nothing*/}
-
-		//NOTE: logdir/make_mfcc_{name}.JOB.log is not used
-
 		std::vector<std::thread> _threads;
-		std::vector<string_vec> _extract_options, _compute_mfc_options, _copy_feats_options;
-
-		//NOTE: must keep the parameters to the function call started in different threads in order that the threads can access it
+		std::vector<string_vec> _extract_options, _compute_mfc_options, _copy_feats_options;		
 		std::vector<StrVec2Arg *> _args0, _args1, _args2;
+
+		//parallel section
 		for (int JOBID = 1; JOBID <= nj; JOBID++) {
 			//add all options for extract-segments
 			string_vec extract_options;
@@ -134,7 +127,7 @@ VOICEBRIDGE_API int MakeMfcc(
 			compute_mfc_options.push_back("--print-args=false"); //NOTE: do not print arguments
 			compute_mfc_options.push_back("--verbose=2"); //NOTE: verbose may be decreased from 2 to 1!
 			compute_mfc_options.push_back("--config=" + mfcc_config.string());
-			compute_mfc_options.push_back("scp,p:" + ((logdir / ("segments.JOBID.temp")).string()));
+			compute_mfc_options.push_back("ark:" + ((logdir / ("segments.JOBID.temp")).string()));
 			//NOTE: the output must be written into a temporary file which will be passed to copy-feats
 			compute_mfc_options.push_back("ark:" + ((logdir / ("wav_" + name + ".JOBID.mfctemp")).string()));
 			//replace 'JOBID' with the current job ID of the thread
@@ -206,7 +199,6 @@ VOICEBRIDGE_API int MakeMfcc(
 		if (SplitScp(scp, split_segments) < 0) return -1;
 
 		//NOTE: add ',p' to the input rspecifier so that we can just skip over utterances that have bad wave data.
-		//NOTE: logdir/make_mfcc_{name}.JOB.log is not used
 
 		std::vector<std::thread> _threads;
 		std::vector<string_vec> _compute_mfc_options, _copy_feats_options;
@@ -347,7 +339,7 @@ VOICEBRIDGE_API int MakeMfcc(
 //NOTE: this will be called from several threads
 static void LaunchJob(int argc1, char *argv1[], int argc2, char *argv2[], fs::path log)
 {
-	//we redirect Kaldi logging to the log file:
+	//we redirect logging to the log file:
 	fs::ofstream file_log(log, fs::ofstream::binary | fs::ofstream::out);
 	if (!file_log) LOGTW_WARNING << "Log file is not accessible " << log.string() << ".";
 
@@ -368,7 +360,7 @@ static void LaunchJob(int argc1, char *argv1[], int argc2, char *argv2[], fs::pa
 //NOTE: this will be called from several threads
 static void LaunchJob_segments(int argc0, char *argv0[], int argc1, char *argv1[], int argc2, char *argv2[], fs::path log)
 {
-	//we redirect Kaldi logging to the log file:
+	//we redirect logging to the log file:
 	fs::ofstream file_log(log, fs::ofstream::binary | fs::ofstream::out);
 	if (!file_log) LOGTW_WARNING << "Log file is not accessible " << log.string() << ".";
 

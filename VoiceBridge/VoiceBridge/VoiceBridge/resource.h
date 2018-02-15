@@ -1,6 +1,6 @@
 //{{NO_DEPENDENCIES}}
 // Microsoft Visual C++ generated include file.
-// Used by KaldiWinLib.rc
+// Used by VoiceBridge.rc
 
 // Next default values for new objects
 // 

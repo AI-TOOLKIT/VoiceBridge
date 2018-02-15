@@ -171,6 +171,7 @@ int ExtractSegments(int argc, char *argv[], fs::ofstream & file_log)
         else {
           KALDI_ERR << "If your data has multiple channels, you must specify the"
               " channel in the segments file.  Processing segment " << segment;
+		  return -1; //VB
         }
       } else {
         if (channel >= num_chan) {

@@ -68,8 +68,10 @@ int LatticePrune(int argc, char *argv[], fs::ofstream & file_log) {
     int64 n_arcs_in = 0, n_arcs_out = 0,
         n_states_in = 0, n_states_out = 0;
 
-    if (acoustic_scale == 0.0)
-      KALDI_ERR << "Do not use a zero acoustic scale (cannot be inverted)";
+	if (acoustic_scale == 0.0) {
+		KALDI_ERR << "Do not use a zero acoustic scale (cannot be inverted).";
+		return -1; //VB
+	}
     
     for (; !compact_lattice_reader.Done(); compact_lattice_reader.Next()) {
       std::string key = compact_lattice_reader.Key();

@@ -76,10 +76,12 @@ int AddSelfLoops(int argc, char *argv[]) {
     std::vector<int32> disambig_syms_in;
     if (disambig_in_filename != "") {
       if (disambig_in_filename == "-") disambig_in_filename = "";
-      if (!ReadIntegerVectorSimple(disambig_in_filename, &disambig_syms_in))
-        KALDI_ERR << "add-self-loops: could not read disambig symbols from "
-                   <<(disambig_in_filename == "" ?
-                      "standard input" : disambig_in_filename);
+	  if (!ReadIntegerVectorSimple(disambig_in_filename, &disambig_syms_in)) {
+		  KALDI_ERR << "add-self-loops: could not read disambig symbols from "
+			  << (disambig_in_filename == "" ?
+				  "standard input" : disambig_in_filename);
+		  return -1; //VB
+	  }
     }
 
     TransitionModel trans_model;
@@ -88,9 +90,10 @@ int AddSelfLoops(int argc, char *argv[]) {
 
     fst::VectorFst<fst::StdArc> *fst =
         fst::VectorFst<fst::StdArc>::Read(fst_in_filename);
-    if (!fst)
-      KALDI_ERR << "add-self-loops: error reading input FST.";
-
+	if (!fst) {
+		KALDI_ERR << "add-self-loops: error reading input FST.";
+		return -1; //VB
+	}
 
     // The work gets done here.
     AddSelfLoops(trans_model,
@@ -99,10 +102,12 @@ int AddSelfLoops(int argc, char *argv[]) {
                  reorder,
                  fst);
 
-    if (! fst->Write(fst_out_filename) )
-      KALDI_ERR << "add-self-loops: error writing FST to "
-                 << (fst_out_filename == "" ?
-                     "standard output" : fst_out_filename);
+	if (!fst->Write(fst_out_filename)) {
+		KALDI_ERR << "add-self-loops: error writing FST to "
+			<< (fst_out_filename == "" ?
+				"standard output" : fst_out_filename);
+		return -1; //VB
+	}
 
     delete fst;
     return 0;

@@ -17,6 +17,7 @@
 //featbin
 int ComputeMFCCFeats(int argc, char *argv[], fs::ofstream & file_log);
 int CopyFeats(int argc, char *argv[], fs::ofstream & file_log);
+int PasteFeats(int argc, char *argv[], fs::ofstream & file_log);
 int ExtractSegments(int argc, char *argv[], fs::ofstream & file_log);
 int FeatToDim(int argc, char *argv[]);
 
@@ -31,6 +32,9 @@ int SpliceFeats(int argc, char *argv[]);
 int TransformFeats(int argc, char *argv[], fs::ofstream & file_log);
 
 int ComposeTransforms(int argc, char *argv[], fs::ofstream & file_log);
+
+int ProcessKaldiPitchFeats(int argc, char *argv[], fs::ofstream & file_log);
+int ComputeKaldiPitchFeats(int argc, char *argv[], fs::ofstream & file_log);
 
 //gmmbin
 int GmmInfo(int argc, char *argv[]);

@@ -62,7 +62,7 @@ int CopyFeats(int argc, char *argv[], fs::ofstream & file_log)
     if (po.NumArgs() != 2) {
 		//po.PrintUsage();
 		//exit(1);
-		KALDI_ERR << "wrong arguments.";
+		KALDI_ERR << "Wrong arguments.";
 		return -1;
     }
 
@@ -145,9 +145,11 @@ int CopyFeats(int argc, char *argv[], fs::ofstream & file_log)
       return (num_done != 0 ? 0 : 1);
     } else {
       KALDI_ASSERT(!compress && "Compression not yet supported for single files");
-      if (!num_frames_wspecifier.empty())
-        KALDI_ERR << "--write-num-frames option not supported when writing/reading "
-                  << "single files.";
+	  if (!num_frames_wspecifier.empty()) {
+		  KALDI_ERR << "--write-num-frames option not supported when writing/reading "
+			  << "single files.";
+		  return -1; //VB
+	  }
 
       std::string feat_rxfilename = po.GetArg(1), feat_wxfilename = po.GetArg(2);
 
@@ -159,6 +161,7 @@ int CopyFeats(int argc, char *argv[], fs::ofstream & file_log)
         ReadHtk(ki.Stream(), &feat_matrix, &header);
       } else if (sphinx_in) {
         KALDI_ERR << "For single files, sphinx input is not yet supported.";
+		return -1; //VB
       } else {
         ReadKaldiObject(feat_rxfilename, &feat_matrix);
       }

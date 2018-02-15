@@ -24,7 +24,7 @@ See ../../COPYING for clarification regarding multiple authors
 
 namespace kaldi {
 
-void GetEditsSingleHyp( const std::string &hyp_rspecifier,
+int GetEditsSingleHyp( const std::string &hyp_rspecifier,
       const std::string &ref_rspecifier,
       const std::string &mode,
       std::vector<std::pair<int32, int32> > & edit_word_per_hyp) {
@@ -40,9 +40,11 @@ void GetEditsSingleHyp( const std::string &hyp_rspecifier,
       const std::vector<std::string> &ref_sent = ref_reader.Value();
       std::vector<std::string> hyp_sent;
       if (!hyp_reader.HasKey(key)) {
-        if (mode == "strict")
-          KALDI_ERR << "No hypothesis for key " << key << " and strict "
-              "mode specifier.";
+		  if (mode == "strict") {
+			  KALDI_ERR << "No hypothesis for key " << key << " and strict "
+				  "mode specifier.";
+			  return -1; //VB
+		  }
         if (mode == "present")  // do not score this one.
           continue;
       } else {
@@ -53,9 +55,10 @@ void GetEditsSingleHyp( const std::string &hyp_rspecifier,
                                             &num_ins, &num_del, &num_sub);
       edit_word_per_hyp.push_back(std::pair<int32, int32>(word_errs, num_words));
     }
+	return 0; //VB
 }
 
-void GetEditsDualHyp(const std::string &hyp_rspecifier,
+int GetEditsDualHyp(const std::string &hyp_rspecifier,
       const std::string &hyp_rspecifier2,
       const std::string &ref_rspecifier,
       const std::string &mode,
@@ -78,6 +81,7 @@ void GetEditsDualHyp(const std::string &hyp_rspecifier,
               (!hyp_reader.HasKey(key) || !hyp_reader2.HasKey(key))) {
           KALDI_ERR << "No hypothesis for key " << key << " in both transcripts "
               "comparison is not possible.";
+		  return -1; //VB
       } else if (mode == "present" &&
               (!hyp_reader.HasKey(key) || !hyp_reader2.HasKey(key)))
           continue;
@@ -103,6 +107,8 @@ void GetEditsDualHyp(const std::string &hyp_rspecifier,
         word_errs = num_words;
       edit_word_per_hyp2.push_back(std::pair<int32, int32>(word_errs, num_words));
     }
+
+	return 0; //VB
 }
 
 void GetBootstrapWERInterval(
@@ -209,15 +215,20 @@ int ComputeWerBootci(int argc, char *argv[], fs::ofstream & file_log) {
       KALDI_ERR <<
           "--mode option invalid: expected \"present\"|\"all\"|\"strict\", got "
           << mode;
+	  return -1; //VB
     }
 
     //Get editions per each utterance
     std::vector<std::pair<int32, int32> > edit_word_per_hyp, edit_word_per_hyp2;
-    if(hyp2_rspecifier.empty())
-      GetEditsSingleHyp(hyp_rspecifier, ref_rspecifier, mode, edit_word_per_hyp);
-    else
-      GetEditsDualHyp(hyp_rspecifier, hyp2_rspecifier, ref_rspecifier, mode,
-              edit_word_per_hyp, edit_word_per_hyp2);
+	if (hyp2_rspecifier.empty()) {
+		int ret = GetEditsSingleHyp(hyp_rspecifier, ref_rspecifier, mode, edit_word_per_hyp);
+		if(ret<0) return -1; //VB
+	}
+	else {
+		int ret=GetEditsDualHyp(hyp_rspecifier, hyp2_rspecifier, ref_rspecifier, mode,
+			edit_word_per_hyp, edit_word_per_hyp2);
+		if(ret<0) return -1; //VB
+	}
 
     //Extract WER for a number of replications of the same size
     //as the hypothesis extracted

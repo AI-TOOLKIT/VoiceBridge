@@ -94,22 +94,29 @@ int ClusterPhones(int argc, char *argv[], fs::ofstream & file_log) {
 			|| pdf_class_list.empty()) {
 			KALDI_ERR << "Invalid pdf-class-list string [expecting colon-separated list of integers]: "
 				<< pdf_class_list_str;
+			return -1; //VB
 		}
 
 		std::vector<std::vector< int32> > phone_sets;
-		if (!ReadIntegerVectorVectorSimple(phone_sets_rxfilename, &phone_sets))
+		if (!ReadIntegerVectorVectorSimple(phone_sets_rxfilename, &phone_sets)) {
 			KALDI_ERR << "Could not read phone sets from "
-			<< PrintableRxfilename(phone_sets_rxfilename);
+				<< PrintableRxfilename(phone_sets_rxfilename);
+			return -1; //VB
+		}
 
-		if (phone_sets.size() == 0)
+		if (phone_sets.size() == 0) {
 			KALDI_ERR << "No phone sets in phone sets file ";
+			return -1; //VB
+		}
 
 		std::vector<std::vector<int32> > phone_sets_out;
 
 		if (mode == "questions") {
-			if (num_classes != -1)
+			if (num_classes != -1) {
 				KALDI_ERR << "num-classes option is not (currently) compatible "
-				"with \"questions\" mode.";
+					"with \"questions\" mode.";
+				return -1; //VB
+			}
 			AutomaticallyObtainQuestions(stats,
 				phone_sets,
 				pdf_class_list,
@@ -118,9 +125,11 @@ int ClusterPhones(int argc, char *argv[], fs::ofstream & file_log) {
 		}
 		else if (mode == "k-means") {
 			if (num_classes <= 1 ||
-				static_cast<size_t>(num_classes) > phone_sets.size())
+				static_cast<size_t>(num_classes) > phone_sets.size()) {
 				KALDI_ERR << "num-classes invalid: num_classes is " << num_classes
-				<< ", number of phone sets is " << phone_sets.size();
+					<< ", number of phone sets is " << phone_sets.size();
+				return -1; //VB
+			}
 			KMeansClusterPhones(stats,
 				phone_sets,
 				pdf_class_list,
@@ -129,9 +138,11 @@ int ClusterPhones(int argc, char *argv[], fs::ofstream & file_log) {
 				&phone_sets_out);
 		}
 
-		if (!WriteIntegerVectorVectorSimple(phone_sets_wxfilename, phone_sets_out))
+		if (!WriteIntegerVectorVectorSimple(phone_sets_wxfilename, phone_sets_out)) {
 			KALDI_ERR << "Error writing questions to "
-			<< PrintableWxfilename(phone_sets_wxfilename);
+				<< PrintableWxfilename(phone_sets_wxfilename);
+			return -1; //VB
+		}
 		else {
 			if (file_log)
 				file_log << "Wrote questions to " << phone_sets_wxfilename << "\n";

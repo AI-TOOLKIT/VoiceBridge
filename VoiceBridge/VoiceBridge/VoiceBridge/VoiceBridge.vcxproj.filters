@@ -330,6 +330,9 @@
     <ClInclude Include="..\kaldi-win\utility\Utility2.h">
       <Filter>kaldi-win\utility</Filter>
     </ClInclude>
+    <ClInclude Include="..\kaldi-win\scr\kaldi_scr2.h">
+      <Filter>kaldi-win\scr</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -985,6 +988,18 @@
     </ClCompile>
     <ClCompile Include="..\kaldi-win\src\latbin\nbest-to-prons.cpp">
       <Filter>kaldi-win\src\latbin</Filter>
+    </ClCompile>
+    <ClCompile Include="..\kaldi-win\scr\steps\make_mfcc_pitch.cpp">
+      <Filter>kaldi-win\scr\steps</Filter>
+    </ClCompile>
+    <ClCompile Include="..\kaldi-win\src\featbin\paste-feats.cpp">
+      <Filter>kaldi-win\src\featbin</Filter>
+    </ClCompile>
+    <ClCompile Include="..\kaldi-win\src\featbin\compute-kaldi-pitch-feats.cpp">
+      <Filter>kaldi-win\src\featbin</Filter>
+    </ClCompile>
+    <ClCompile Include="..\kaldi-win\src\featbin\process-kaldi-pitch-feats.cpp">
+      <Filter>kaldi-win\src\featbin</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -79,21 +79,23 @@ int GmmLatgenFaster(int argc, char *argv[], fs::ofstream & file_log) {
     bool determinize = config.determinize_lattice;
     CompactLatticeWriter compact_lattice_writer;
     LatticeWriter lattice_writer;
-    if (! (determinize ? compact_lattice_writer.Open(lattice_wspecifier)
-           : lattice_writer.Open(lattice_wspecifier)))
-      KALDI_ERR << "Could not open table for writing lattices: "
-                 << lattice_wspecifier;
-
+	if (!(determinize ? compact_lattice_writer.Open(lattice_wspecifier)
+		: lattice_writer.Open(lattice_wspecifier))) {
+		KALDI_ERR << "Could not open table for writing lattices: "
+			<< lattice_wspecifier;
+		return -1; //VB
+	}
     Int32VectorWriter words_writer(words_wspecifier);
 
     Int32VectorWriter alignment_writer(alignment_wspecifier);
 
     fst::SymbolTable *word_syms = NULL;
     if (word_syms_filename != "")
-      if (!(word_syms = fst::SymbolTable::ReadText(word_syms_filename)))
-        KALDI_ERR << "Could not read symbol table from file "
-                   << word_syms_filename;
-
+		if (!(word_syms = fst::SymbolTable::ReadText(word_syms_filename))) {
+			KALDI_ERR << "Could not read symbol table from file "
+				<< word_syms_filename;
+			return -1; //VB
+		}
     double tot_like = 0.0;
     kaldi::int64 frame_count = 0;
     int num_done = 0, num_err = 0;

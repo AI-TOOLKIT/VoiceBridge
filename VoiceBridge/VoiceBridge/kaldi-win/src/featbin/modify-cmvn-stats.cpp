@@ -62,6 +62,7 @@ int ModifyCmvnStats(int argc, char *argv[], fs::ofstream & file_log) {
     if (!SplitStringToIntegers(skip_dims_str, ":", false, &skip_dims)) {
       KALDI_ERR << "Bad first argument (should be colon-separated list of "
                 <<  "integers)";
+	  return -1; //VB
     }
     
     SequentialDoubleMatrixReader reader(rspecifier);
@@ -70,8 +71,10 @@ int ModifyCmvnStats(int argc, char *argv[], fs::ofstream & file_log) {
     for (; !reader.Done(); reader.Next()) {
       Matrix<double> mat(reader.Value());
 
-      if (mat.NumRows() != 2)
-        KALDI_ERR << "Expected input to be CMVN stats (should have two rows)";
+	  if (mat.NumRows() != 2) {
+		  KALDI_ERR << "Expected input to be CMVN stats (should have two rows)";
+		  return -1; //VB
+	  }
 
       FakeStatsForSomeDims(skip_dims, &mat);
       if (!convert_to_mean_and_var) {

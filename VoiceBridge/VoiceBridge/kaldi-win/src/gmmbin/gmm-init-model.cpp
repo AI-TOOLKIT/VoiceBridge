@@ -119,7 +119,7 @@ namespace kaldi {
 	/// old model, to any given PDF in the new model.  Here, "closest" is
 	/// defined as: has the largest count in common from the tree stats.
 
-	void InitAmGmmFromOld(const BuildTreeStatsType &stats,
+	int InitAmGmmFromOld(const BuildTreeStatsType &stats,
 		const EventMap &to_pdf_map,
 		int32 N,  // context-width
 		int32 P,  // central-position
@@ -184,9 +184,11 @@ namespace kaldi {
 			// note: don't get confused by the "old" and "new" in the parameters
 			// to ConvertStats.  The next line is correct.
 			bool ret = ConvertStats(N, P, oldN, oldP, &my_stats);
-			if (!ret)
+			if (!ret) {
 				KALDI_ERR << "InitAmGmmFromOld: old system has wider context "
-				"so cannot convert stats.";
+					"so cannot convert stats.";
+				return -1; //VB
+			}
 			// oldpdf_to_count works out a map from old pdf-id to count (for stats
 			// that align to this "new" pdf... we'll use it to work out the old pdf-id
 			// that's "closest" in stats overlap to this new pdf ("pdf").
@@ -195,7 +197,10 @@ namespace kaldi {
 				EventType evec = my_stats[i].first;
 				EventAnswerType ans;
 				bool ret = old_map.Map(evec, &ans);
-				if (!ret) { KALDI_ERR << "Could not map context using old tree."; }
+				if (!ret) { 
+					KALDI_ERR << "Could not map context using old tree."; 
+					return -1; //VB
+				}
 				KALDI_ASSERT(my_stats[i].second != NULL);
 				BaseFloat stats_count = my_stats[i].second->Normalizer();
 				if (oldpdf_to_count.count(ans) == 0) oldpdf_to_count[ans] = stats_count;
@@ -219,6 +224,8 @@ namespace kaldi {
 				am_gmm->AddPdf(old_am_gmm.GetPdf(max_old_pdf));  // Here is where we copy the relevant old PDF.
 			}
 		}
+
+		return 0; //VB
 	}
 }
 
@@ -299,13 +306,14 @@ int GmmInitModel(int argc, char *argv[], fs::ofstream & file_log) {
 		if (old_tree_filename.empty())
 			InitAmGmm(stats, to_pdf, &am_gmm, trans_model, var_floor);  // Normal case: initialize 1 Gauss/model from tree stats.
 		else {
-			InitAmGmmFromOld(stats, to_pdf,
+			int ret = InitAmGmmFromOld(stats, to_pdf,
 				ctx_dep.ContextWidth(),
 				ctx_dep.CentralPosition(),
 				old_tree_filename,
 				old_model_filename,
 				var_floor,
 				&am_gmm);
+			if(ret<0) return -1; //VB
 		}
 
 		if (!occs_out_filename.empty()) {  // write state occs

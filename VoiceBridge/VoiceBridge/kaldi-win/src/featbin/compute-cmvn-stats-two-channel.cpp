@@ -25,7 +25,7 @@ namespace kaldi {
   them into pairs corresponding to A/B sides, or singletons in case
   we get one without the other.
  */
-void GetUtterancePairs(const std::string &reco2file_and_channel_rxfilename,
+int GetUtterancePairs(const std::string &reco2file_and_channel_rxfilename,
                        std::vector<std::vector<std::string> > *utt_pairs) {
   Input ki(reco2file_and_channel_rxfilename);
   std::string line;
@@ -37,6 +37,7 @@ void GetUtterancePairs(const std::string &reco2file_and_channel_rxfilename,
       KALDI_ERR << "Expecting 3 fields per line of reco2file_and_channel file "
                 << PrintableRxfilename(reco2file_and_channel_rxfilename)
                 << ", got: " << line;
+	  return -1; //VB
     }
     // lines like: sw02001-A sw02001 A
     std::string utt = split_line[0],
@@ -140,7 +141,8 @@ int ComputeCmvnStatsTwoChannel(int argc, char *argv[], fs::ofstream & file_log)
 
 
     std::vector<std::vector<std::string> > utt_pairs;
-    GetUtterancePairs(reco2file_and_channel_rxfilename, &utt_pairs);
+    int ret = GetUtterancePairs(reco2file_and_channel_rxfilename, &utt_pairs);
+	if(ret<0) return -1; //VB
     
     RandomAccessBaseFloatMatrixReader feat_reader(feats_rspecifier);
     DoubleMatrixWriter writer(stats_wspecifier);

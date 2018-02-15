@@ -51,8 +51,10 @@ int FeatToDim(int argc, char *argv[])
       for (; !kaldi_reader.Done(); kaldi_reader.Next())
         dim_writer.Write(kaldi_reader.Key(), kaldi_reader.Value().NumCols());
     } else {
-      if (kaldi_reader.Done())
-        KALDI_ERR << "Could not read any features (empty archive?)";
+		if (kaldi_reader.Done()) {
+			KALDI_ERR << "Could not read any features (empty archive?).";
+			return -1; //VB
+		}
       Output ko(wspecifier_or_wxfilename, false); // text mode.
       ko.Stream() << kaldi_reader.Value().NumCols() << "\n";
     }

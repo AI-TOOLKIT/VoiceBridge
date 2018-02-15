@@ -91,10 +91,11 @@ int GmmMixup(int argc, char *argv[], fs::ofstream & file_log) {
 
 			Vector<BaseFloat> occs;
 			ReadKaldiObject(occs_in_filename, &occs);
-			if (occs.Dim() != am_gmm.NumPdfs())
+			if (occs.Dim() != am_gmm.NumPdfs()) {
 				KALDI_ERR << "Dimension of state occupancies " << occs.Dim()
-				<< " does not match num-pdfs " << am_gmm.NumPdfs();
-
+					<< " does not match num-pdfs " << am_gmm.NumPdfs();
+				return -1; //VB
+			}
 			if (mixdown != 0)
 				am_gmm.MergeByCount(occs, mixdown, power, min_count);
 

@@ -64,11 +64,12 @@ int LatticeBestPath(int argc, char *argv[], fs::ofstream & file_log) {
 		Int32VectorWriter alignments_writer(alignments_wspecifier);
 
 		fst::SymbolTable *word_syms = NULL;
-		if (word_syms_filename != "")
-			if (!(word_syms = fst::SymbolTable::ReadText(word_syms_filename)))
-				KALDI_ERR << "Could not read symbol table from file "
-				<< word_syms_filename;
-
+		if (word_syms_filename != "") {
+			if (!(word_syms = fst::SymbolTable::ReadText(word_syms_filename))) {
+				KALDI_ERR << "Could not read symbol table from file " << word_syms_filename;
+				return -1; //VB
+			}
+		}
 
 		int32 n_done = 0, n_fail = 0;
 		int64 n_frame = 0;

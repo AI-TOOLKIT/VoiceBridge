@@ -42,7 +42,7 @@ int AlignEqualCompiled(int argc, char *argv[], fs::ofstream & file_log) {
     if (po.NumArgs() != 3) {
       //po.PrintUsage();
       //exit(1);
-		KALDI_ERR << "wrong arguments.";
+		KALDI_ERR << "Wrong arguments.";
 		return -1;
     }
 

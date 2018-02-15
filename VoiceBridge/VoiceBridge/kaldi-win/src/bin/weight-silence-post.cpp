@@ -68,12 +68,16 @@ int WeightSilencePost(int argc, char *argv[], fs::ofstream & file_log) {
 			posteriors_wspecifier = po.GetArg(5);
 
 		BaseFloat silence_weight = 0.0;
-		if (!ConvertStringToReal(silence_weight_str, &silence_weight))
+		if (!ConvertStringToReal(silence_weight_str, &silence_weight)) {
 			KALDI_ERR << "Invalid silence-weight parameter: expected float, got \""
-			<< silence_weight_str << '"';
+				<< silence_weight_str << '"';
+			return -1; //VB
+		}
 		std::vector<int32> silence_phones;
-		if (!SplitStringToIntegers(silence_phones_str, ":", false, &silence_phones))
+		if (!SplitStringToIntegers(silence_phones_str, ":", false, &silence_phones)) {
 			KALDI_ERR << "Invalid silence-phones string " << silence_phones_str;
+			return -1; //VB
+		}
 		if (silence_phones.empty())
 			KALDI_WARN << "No silence phones, this will have no effect";
 		ConstIntegerSet<int32> silence_set(silence_phones);  // faster lookup.

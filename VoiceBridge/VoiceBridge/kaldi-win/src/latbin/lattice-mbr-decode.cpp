@@ -85,10 +85,12 @@ int LatticeMbrDecode(int argc, char *argv[], fs::ofstream & file_log) {
     BaseFloatPairVectorWriter times_writer(times_wspecifier);
 
     fst::SymbolTable *word_syms = NULL;
-    if (word_syms_filename != "")
-      if (!(word_syms = fst::SymbolTable::ReadText(word_syms_filename)))
-        KALDI_ERR << "Could not read symbol table from file "
-                   << word_syms_filename;
+	if (word_syms_filename != "") {
+		if (!(word_syms = fst::SymbolTable::ReadText(word_syms_filename))) {
+			KALDI_ERR << "Could not read symbol table from file " << word_syms_filename;
+			return -1; //VB
+		}
+	}
 
     int32 n_done = 0, n_words = 0;
     BaseFloat tot_bayes_risk = 0.0;

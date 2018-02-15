@@ -134,9 +134,11 @@ int SubsetFeats(int argc, char *argv[], fs::ofstream & file_log) {
     if (include_rxfilename != "") {
       if (n != 10) {
         KALDI_ERR << "Should not have both --include and --n option!";
+		return -1; //VB
       }
       if (exclude_rxfilename != "") {
         KALDI_ERR << "should not have both --exclude and --include option!";
+		return -1; //VB
       }
       return CopyIncludedFeats(include_rxfilename,
                                &kaldi_reader, &kaldi_writer, file_log);
@@ -144,6 +146,7 @@ int SubsetFeats(int argc, char *argv[], fs::ofstream & file_log) {
     else if (exclude_rxfilename != "") {
       if (n != 10) {
         KALDI_ERR << "Should not have both --exclude and --n option!";
+		return -1; //VB
       }
       return CopyExcludedFeats(exclude_rxfilename,
                                &kaldi_reader, &kaldi_writer, file_log);
@@ -151,6 +154,7 @@ int SubsetFeats(int argc, char *argv[], fs::ofstream & file_log) {
 
     if (n == 0) {
       KALDI_ERR << "Invalid option --n=0. Should be at least 1";
+	  return -1; //VB
     }
 
     int32 k = 0;

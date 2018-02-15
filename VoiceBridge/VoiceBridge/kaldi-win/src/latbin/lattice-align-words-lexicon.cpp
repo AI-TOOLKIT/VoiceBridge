@@ -86,8 +86,8 @@ int LatticeAlignWordsLexicon(int argc, char *argv[], fs::ofstream & file_log) {
 			Input ki(align_lexicon_rxfilename, &binary_in);
 			KALDI_ASSERT(!binary_in && "Not expecting binary file for lexicon");
 			if (!ReadLexiconForWordAlign(ki.Stream(), &lexicon)) {
-				KALDI_ERR << "Error reading alignment lexicon from "
-					<< align_lexicon_rxfilename;
+				KALDI_ERR << "Error reading alignment lexicon from " << align_lexicon_rxfilename;
+				return -1; //VB
 			}
 		}
 

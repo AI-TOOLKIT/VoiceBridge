@@ -43,6 +43,7 @@ namespace kaldi {
 				<< ss_seen.str() << " vs. " << ss_topo.str();
 			if (seen_phones.size() > topo_phones.size()) {
 				KALDI_ERR << "ProcessTopo: phones are asked about that are undefined in the topology.";
+				return -1; //VB
 			} // we accept the reverse (not asking about all phones), even though it's very bad.
 		}
 
@@ -110,13 +111,17 @@ int CompileQuestions(int argc, char *argv[], fs::ofstream & file_log) {
 		ReadKaldiObject(topo_filename, &topo);
 
 		std::vector<std::vector<int32> > questions;  // sets of phones.
-		if (!ReadIntegerVectorVectorSimple(questions_rxfilename, &questions))
+		if (!ReadIntegerVectorVectorSimple(questions_rxfilename, &questions)) {
 			KALDI_ERR << "Could not read questions from "
-			<< PrintableRxfilename(questions_rxfilename);
+				<< PrintableRxfilename(questions_rxfilename);
+			return -1; //VB
+		}
 		for (size_t i = 0; i < questions.size(); i++) {
 			std::sort(questions[i].begin(), questions[i].end());
-			if (!IsSortedAndUniq(questions[i]))
+			if (!IsSortedAndUniq(questions[i])) {
 				KALDI_ERR << "Questions contain duplicate phones";
+				return -1; //VB
+			}
 		}
 		size_t nq = static_cast<int32>(questions.size());
 		SortAndUniq(&questions);
@@ -129,6 +134,7 @@ int CompileQuestions(int argc, char *argv[], fs::ofstream & file_log) {
 		// returns the max # pdf classes in any given phone (normally
 		// 3).
 		int32 max_num_pdfclasses = ProcessTopo(topo, questions, file_log);
+		if(max_num_pdfclasses<0) return -1; //VB
 
 		Questions qo;
 

@@ -82,18 +82,24 @@ int ComposeTransforms(int argc, char *argv[], fs::ofstream & file_log) {
 
 		RandomAccessTokenReader utt2spk_reader;
 		if (utt2spk_rspecifier != "") {
-			if (!(a_is_rspecifier && b_is_rspecifier))
+			if (!(a_is_rspecifier && b_is_rspecifier)) {
 				KALDI_ERR << "Error: utt2spk option provided compose transforms but "
-				"at least one of the inputs is a global transform.";
-			if (!utt2spk_reader.Open(utt2spk_rspecifier))
+					"at least one of the inputs is a global transform.";
+				return -1; //VB
+			}
+			if (!utt2spk_reader.Open(utt2spk_rspecifier)) {
 				KALDI_ERR << "Error upening utt2spk map from "
-				<< utt2spk_rspecifier;
+					<< utt2spk_rspecifier;
+				return -1; //VB
+			}
 		}
 
-		if ((a_is_rspecifier || b_is_rspecifier) != c_is_wspecifier)
+		if ((a_is_rspecifier || b_is_rspecifier) != c_is_wspecifier) {
 			KALDI_ERR << "Formats of the input and output rspecifiers/rxfilenames do "
-			"not match (if either a or b is an rspecifier, then the output must "
-			"be a wspecifier.";
+				"not match (if either a or b is an rspecifier, then the output must "
+				"be a wspecifier.";
+			return -1; //VB
+		}
 
 		if (a_is_rspecifier || b_is_rspecifier) {
 			BaseFloatMatrixWriter c_writer(transform_c_fn);

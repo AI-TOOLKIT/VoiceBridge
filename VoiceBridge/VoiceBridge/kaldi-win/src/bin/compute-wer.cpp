@@ -70,6 +70,7 @@ int ComputeWer(int argc, char *argv[], fs::ofstream & file_log) {
     if (mode != "strict" && mode != "present" && mode != "all") {
       KALDI_ERR << "--mode option invalid: expected \"present\"|\"all\"|\"strict\", got "
                 << mode;
+	  return -1; //VB
     }
 
     int32 num_words = 0, word_errs = 0, num_sent = 0, sent_errs = 0,
@@ -85,9 +86,11 @@ int ComputeWer(int argc, char *argv[], fs::ofstream & file_log) {
       const std::vector<std::string> &ref_sent = ref_reader.Value();
       std::vector<std::string> hyp_sent;
       if (!hyp_reader.HasKey(key)) {
-        if (mode == "strict")
-          KALDI_ERR << "No hypothesis for key " << key << " and strict "
-              "mode specifier.";
+		  if (mode == "strict") {
+			  KALDI_ERR << "No hypothesis for key " << key << " and strict "
+				  "mode specifier.";
+			  return -1; //VB
+		  }
         num_absent_sents++;
         if (mode == "present")  // do not score this one.
           continue;

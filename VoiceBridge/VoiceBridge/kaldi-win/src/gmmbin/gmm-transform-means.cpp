@@ -73,15 +73,18 @@ int GmmTransformMeans(int argc, char *argv[], fs::ofstream & file_log) {
 		}
 
 		int32 dim = am_gmm.Dim();
-		if (mat.NumRows() != dim)
+		if (mat.NumRows() != dim) {
 			KALDI_ERR << "Transform matrix has " << mat.NumRows() << " rows but "
-			"model has dimension " << am_gmm.Dim();
+				"model has dimension " << am_gmm.Dim();
+			return -1; //VB
+		}
 		if (mat.NumCols() != dim
-			&& mat.NumCols() != dim + 1)
+			&& mat.NumCols() != dim + 1) {
 			KALDI_ERR << "Transform matrix has " << mat.NumCols() << " columns but "
-			"model has dimension " << am_gmm.Dim() << " (neither a linear nor an "
-			"affine transform";
-
+				"model has dimension " << am_gmm.Dim() << " (neither a linear nor an "
+				"affine transform";
+			return -1; //VB
+		}
 		for (int32 i = 0; i < am_gmm.NumPdfs(); i++) {
 			DiagGmm &gmm = am_gmm.GetPdf(i);
 

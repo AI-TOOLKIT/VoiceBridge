@@ -23,21 +23,27 @@ namespace kaldi {
 // 4 5
 // 6 7 8
 // where each line is a list of integer id's of phones (that should have their pdfs shared).
-void ReadSharedPhonesList(std::string rxfilename, std::vector<std::vector<int32> > *list_out) {
+int ReadSharedPhonesList(std::string rxfilename, std::vector<std::vector<int32> > *list_out) {
   list_out->clear();
   Input input(rxfilename);
   std::istream &is = input.Stream();
   std::string line;
   while (std::getline(is, line)) {
     list_out->push_back(std::vector<int32>());
-    if (!SplitStringToIntegers(line, " \t\r", true, &(list_out->back())))
-      KALDI_ERR << "Bad line in shared phones list: " << line << " (reading "
-                << PrintableRxfilename(rxfilename) << ")";
+	if (!SplitStringToIntegers(line, " \t\r", true, &(list_out->back()))) {
+		KALDI_ERR << "Bad line in shared phones list: " << line << " (reading "
+			<< PrintableRxfilename(rxfilename) << ")";
+		return -1; //VB
+	}
     std::sort(list_out->rbegin()->begin(), list_out->rbegin()->end());
-    if (!IsSortedAndUniq(*(list_out->rbegin())))
-      KALDI_ERR << "Bad line in shared phones list (repeated phone): " << line
-                << " (reading " << PrintableRxfilename(rxfilename) << ")";
+	if (!IsSortedAndUniq(*(list_out->rbegin()))) {
+		KALDI_ERR << "Bad line in shared phones list (repeated phone): " << line
+			<< " (reading " << PrintableRxfilename(rxfilename) << ")";
+		return -1; //VB
+	}
   }
+
+  return 0; //VB
 }
 
 } // end namespace kaldi
@@ -98,12 +104,17 @@ int GmmInitMono(int argc, char *argv[]) {
           mean_stats.AddVec(1.0, mat.Row(i));
         }
       }
-      if (count == 0) { KALDI_ERR << "no features were seen."; }
+      if (count == 0) { 
+		  KALDI_ERR << "No features were seen."; 
+		  return -1; //VB
+	  }
       var_stats.Scale(1.0/count);
       mean_stats.Scale(1.0/count);
       var_stats.AddVec2(-1.0, mean_stats);
-      if (var_stats.Min() <= 0.0)
-        KALDI_ERR << "bad variance";
+	  if (var_stats.Min() <= 0.0) {
+		  KALDI_ERR << "Bad variance.";
+		  return -1; //VB
+	  }
       var_stats.InvertElements();
       glob_inv_var.CopyFromVec(var_stats);
       glob_mean.CopyFromVec(mean_stats);
@@ -126,8 +137,9 @@ int GmmInitMono(int argc, char *argv[]) {
       ctx_dep = MonophoneContextDependency(phones, phone2num_pdf_classes);
     } else {
       std::vector<std::vector<int32> > shared_phones;
-      ReadSharedPhonesList(shared_phones_rxfilename, &shared_phones);
+      int ret = ReadSharedPhonesList(shared_phones_rxfilename, &shared_phones);
       // ReadSharedPhonesList crashes on error.
+	  if(ret<0) return -1; //VB
       ctx_dep = MonophoneContextDependencyShared(shared_phones, phone2num_pdf_classes);
     }
 

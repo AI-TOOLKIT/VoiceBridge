@@ -76,8 +76,11 @@ int Lattice1best(int argc, char *argv[], fs::ofstream & file_log) {
 
 		int32 n_done = 0, n_err = 0;
 
-		if (acoustic_scale == 0.0 || lm_scale == 0.0)
-			KALDI_ERR << "Do not use exactly zero acoustic or LM scale (cannot be inverted)";
+		if (acoustic_scale == 0.0 || lm_scale == 0.0) {
+			KALDI_ERR << "Do not use exactly zero acoustic or LM scale (cannot be inverted).";
+			return -1; //VB
+		}
+
 		for (; !clat_reader.Done(); clat_reader.Next()) {
 			std::string key = clat_reader.Key();
 			CompactLattice clat = clat_reader.Value();

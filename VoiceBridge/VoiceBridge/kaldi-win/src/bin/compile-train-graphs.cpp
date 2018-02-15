@@ -77,9 +77,11 @@ int CompileTrainGraphs(int argc, char *argv[], fs::ofstream & file_log) {
 
 		std::vector<int32> disambig_syms;
 		if (disambig_rxfilename != "")
-			if (!ReadIntegerVectorSimple(disambig_rxfilename, &disambig_syms))
+			if (!ReadIntegerVectorSimple(disambig_rxfilename, &disambig_syms)) {
 				KALDI_ERR << "fstcomposecontext: Could not read disambiguation symbols from "
-				<< disambig_rxfilename;
+					<< disambig_rxfilename;
+				return -1; //VB
+			}
 
 		TrainingGraphCompiler gc(trans_model, ctx_dep, lex_fst, disambig_syms, gopts);
 
@@ -126,6 +128,7 @@ int CompileTrainGraphs(int argc, char *argv[], fs::ofstream & file_log) {
 				std::vector<fst::VectorFst<fst::StdArc>* > fsts;
 				if (!gc.CompileGraphsFromText(transcripts, &fsts)) {
 					KALDI_ERR << "Not expecting CompileGraphs to fail.";
+					return -1; //VB
 				}
 				KALDI_ASSERT(fsts.size() == keys.size());
 				for (size_t i = 0; i < fsts.size(); i++) {

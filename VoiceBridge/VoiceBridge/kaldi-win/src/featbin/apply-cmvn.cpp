@@ -61,9 +61,10 @@ int ApplyCmvn(int argc, char *argv[], fs::ofstream & file_log) {
 	  KALDI_ERR << "Wrong arguments ApplyCmvn.";
 	  return -1;
     }
-    if (norm_vars && !norm_means)
-      KALDI_ERR << "You cannot normalize the variance but not the mean.";
-
+	if (norm_vars && !norm_means) {
+		KALDI_ERR << "You cannot normalize the variance but not the mean.";
+		return -1; //VB
+	}
 
     std::string cmvn_rspecifier_or_rxfilename = po.GetArg(1);
     std::string feat_rspecifier = po.GetArg(2);
@@ -93,6 +94,7 @@ int ApplyCmvn(int argc, char *argv[], fs::ofstream & file_log) {
     if (!SplitStringToIntegers(skip_dims_str, ":", false, &skip_dims)) {
       KALDI_ERR << "Bad --skip-dims option (should be colon-separated list of "
                 <<  "integers)";
+	  return -1; //VB
     }
 
 
@@ -134,9 +136,11 @@ int ApplyCmvn(int argc, char *argv[], fs::ofstream & file_log) {
         num_done++;
       }
     } else {
-      if (utt2spk_rspecifier != "")
-        KALDI_ERR << "--utt2spk option not compatible with rxfilename as input "
-                  << "(did you forget ark:?)";
+		if (utt2spk_rspecifier != "") {
+			KALDI_ERR << "--utt2spk option not compatible with rxfilename as input "
+				<< "(did you forget ark:?)";
+			return -1; //VB
+		}
       std::string cmvn_rxfilename = cmvn_rspecifier_or_rxfilename;
       bool binary;
       Input ki(cmvn_rxfilename, &binary);
