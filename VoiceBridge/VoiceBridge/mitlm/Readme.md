@@ -1,5 +1,5 @@
-# Ngram Language Model Generator
-This folder contains the module which generates an ngram language model for VoiceBridge.
+# N-gram Language Model Generator
+This folder contains the module which generates an n-gram language model for VoiceBridge.
 The module is based on the MIT Language Modeling (MITLM) toolkit which is a set of tools designed for the efficient estimation of statistical n-gram language models involving iterative parameter estimation.
 
 **NOTE**: Please note that MITLM has been modified for VoiceBridge, therefore do not replace this version with any other version from other sources!
