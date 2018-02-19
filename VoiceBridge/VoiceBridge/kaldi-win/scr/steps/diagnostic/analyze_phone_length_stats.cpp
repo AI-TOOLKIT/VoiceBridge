@@ -350,6 +350,17 @@ int AnalyzePhoneLengthStats(
 			internal_opt_sil_phone_lengths[pair2.first] -= (phone_lengths["begin"][optional_silence_phone][pair2.first] +
 													  phone_lengths["end"][optional_silence_phone][pair2.first]);
 		}
+		//in case for some reason the count is =0 then remove it from the stats
+		PL_MAP2::const_iterator it = internal_opt_sil_phone_lengths.begin();
+		while (it != internal_opt_sil_phone_lengths.end()) {
+			if ((*it).second <= 0) {
+				it = internal_opt_sil_phone_lengths.erase(it);
+			}
+			else {
+				++it;
+			}
+		}
+
 		if (total_phones["internal"] != 0.0) 
 		{
 			int total_internal_optsil_frames=0, total_optsil_frames=0;
