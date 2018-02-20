@@ -25,6 +25,7 @@ VoiceBridge can be considered to be the MS Windows counterpart of KALDI (speech 
 3.	VoiceBridge includes the following **extra modules** not included in Kaldi:
     - Automatic language model generation.
     - Automatic pronunciation lexicon generation.
+    - Semi-automatic speaker group separation.
 
 	Thanks to these modules VoiceBridge only requires a limited number of input:
     - Wav files.
