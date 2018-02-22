@@ -1,18 +1,20 @@
-AI-TOOLKIT Open Source Software License - Version 2.0 - January 9, 2018
+AI-TOOLKIT Open Source Software License - Version 2.1 - February 22, 2018
 
-Permission is hereby granted, free of charge, to any person or organization obtaining 
-a copy of the software and accompanying documentation covered by this license (the "Software")
- to use, reproduce, display, distribute, execute, and transmit the Software, and to prepare
- derivative works of the Software, and to permit third-parties to whom the Software is 
-furnished to do so, all subject to the Apache 2.0 license and the following:
+Permission is hereby granted, free of charge, to any person or organization obtaining a copy of
+the software and accompanying documentation covered by this license (the "Software") to use, 
+reproduce, display, distribute, execute, and transmit the Software, and to prepare derivative works
+of the Software, and to permit third-parties to whom the Software is furnished to do so, all subject
+to the Apache 2.0 license and the following:
 
 1. You may not remove any copyright and license information from the source code.
-2. The following statement must be included in the help file and also in the splash/about 
-box in all copies of the Software, in whole or in part, and in all derivative works of 
-the Software, including software in the form of machine-executable object code:
+2. You may not embed the source code into a hardware device, in whole or in part, including all 
+derivative works of the Software also including software in the form of machine-executable object code.
+3. The following statement must be included in the help file, in the manual, on the web page of the 
+Software and also in the splash/about box in all copies of the Software, in whole or in part, and in
+all derivative works of the Software, including software in the form of machine-executable object code:
 
 "Portions Copyright Zoltan Somogyi (AI-TOOLKIT), license:
-AI-TOOLKIT Open Source Software License - Version 2.0 - January 9, 2018
+AI-TOOLKIT Open Source Software License - Version 2.1 - February 22, 2018
 https://ai-toolkit.blogspot.com/p/ai-toolkit-open-source-software-license.html."
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, 
