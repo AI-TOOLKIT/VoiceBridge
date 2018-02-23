@@ -1,6 +1,6 @@
 # ZLIB DATA COMPRESSION LIBRARY
-This folder contains the zlib library compiled from version zlib-1.2.11.
-In case you want to compile it yourself then download it from the zlib website and compile the static version of the library. The release version is zlibstatic.lib, the debug version is zlibstaticd.lib.
+The minizip folder contains the zlib library compiled from version zlib-1.2.11.
+In case you want to compile it yourself then download it from the zlib website and compile the static version of the library. The release version is zlibstat.lib, the debug version is zlibstatd.lib.
 
 
 Acknowledgments:
