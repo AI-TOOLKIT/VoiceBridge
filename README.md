@@ -58,40 +58,43 @@ VoiceBridge can be considered to be the MS Windows counterpart of KALDI (speech 
 >  This does not cause any problem but it is a bit annoying.
 >  You may try to replace the boost distribution in VoiceBridge with a newer boost version but be aware that you may have to tweak boost a bit in order to be able to compile it.
  
-    Please follow these steps for the compilation:
-	- **a.** Download and install the Intel MKL library. Note the location of the library. For example:
+ 
+   Please follow these steps for the compilation:
+
+- **a.** Download and install the Intel MKL library. Note the location of the library. For example:
 
 			C:\IntelSWTools\compilers_and_libraries_2018\windows\mkl
 
-	- **b.** Adjust the MKL library location in the ‘SettingsVoiceBridge.props’ file in the root directory of VoiceBridge. Do not modify anything else because VoiceBridge is setup with relative paths and therefore you do not need to adjust any more settings.
-	- **c.** Compile the openfst project located in ‘VoiceBridge\openfst-win-1.6’. It is best to compile both Debug and Release versions.
+- **b.** Adjust the MKL library location in the ‘SettingsVoiceBridge.props’ file in the root directory of VoiceBridge. Do not modify anything else because VoiceBridge is setup with relative paths and therefore you do not need to adjust any more settings.
+- **c.** Compile the openfst project located in ‘VoiceBridge\openfst-win-1.6’. It is best to compile both Debug and Release versions.
 	**Important**: Whole program optimization must be OFF for the library!
 
-	- **d.** Compile the Kaldi project located in ‘D:\_WORK1\VoiceBridge\kaldi-master’. It is best to compile both Debug and Release versions.
+- **d.** Compile the Kaldi project located in ‘D:\_WORK1\VoiceBridge\kaldi-master’. It is best to compile both Debug and Release versions.
 	**Important**: Whole program optimization must be OFF for the library!
  
-	- **e.** Compile the VoiceBridge DLL located in ‘VoiceBridge\VoiceBridge\VoiceBridge’.
+- **e.** Compile the VoiceBridge DLL located in ‘VoiceBridge\VoiceBridge\VoiceBridge’.
 	**Important**: Whole program optimization must be OFF! This option could result in 2-3% speed improvement but the DLL should then be cut in peaces because VS can not handle the optimization of so much code.
 
-		Note: Please note that there is a shortcut to all of the above mentioned VS2017 projects in the root directory of the distribution.
+	Note: Please note that there is a shortcut to all of the above mentioned VS2017 projects in the root directory of the distribution.
  
-	- **f.** In the TestDll example you can select which example you want to run. Choose between ‘TestYesNo();’ or ‘TestLibriSpeech();’ or run both after each other.
+- **f.** In the TestDll example you can select which example you want to run. Choose between ‘TestYesNo();’ or ‘TestLibriSpeech();’ or run both after each other.
 	**Important**: You must make sure that the path to the example projects is correct in both example cpp files (YesNo.cpp, LibriSpeech.cpp). E.g. for the Yes-No example the path is set with the following command:
 
 			fs::path project(exepath.branch_path() / "../../../../../VoiceBridgeProjects/YesNo");
 
-		Do this after downloading the example projects from the Github repository: ‘[VoiceBridgeProjects](https://github.com/AI-TOOLKIT/VoiceBridgeProjects)’ (https://github.com/AI-TOOLKIT/VoiceBridgeProjects the data is ~600 MB).
-If you put the example projects into a directory called VoiceBridgeProjects at the same level as the VoiceBridge directory (e.g.: C:\VoiceBridge and C:\ VoiceBridgeProjects) then you do not need to change anything. In this case the input directory for the Yes-No project would be located in: ‘C:\VoiceBridgeProjects\YesNo\input’.
+	Do this after downloading the example projects from the Github repository: ‘[VoiceBridgeProjects](https://github.com/AI-TOOLKIT/VoiceBridgeProjects)’ (https://github.com/AI-TOOLKIT/VoiceBridgeProjects the data is ~600 MB).
 
-	- **g.** Compile the test project located in ‘VoiceBridge\VoiceBridge\TestDll’.
+    If you put the example projects into a directory called VoiceBridgeProjects at the same level as the VoiceBridge directory (e.g.: C:\VoiceBridge and C:\ VoiceBridgeProjects) then you do not need to change anything. In this case the input directory for the Yes-No project would be located in: ‘C:\VoiceBridgeProjects\YesNo\input’.
 
-	- **h.** Run the example.
+- **g.** Compile the test project located in ‘VoiceBridge\VoiceBridge\TestDll’.
 
-		**Important: You must copy the dll's from the Redistributables directory into the Release and/or Debug folder!**
+- **h.** Run the example.
+
+	**Important: You must copy the dll's from the Redistributables directory into the Release and/or Debug folder!**
 
 9.	**Redistribution**: The directory ‘VoiceBridge\Redistributables’ contains all the necessary dll’s which need to be redistributed with any software built with the use of VoiceBridge. Most of them are for the Intel MKL library and one is for OpenMP support. You may of course need to distribute some more dll's required by your compiler (MS VS2017) for example for the C++ runtime.
 
-	Note: Please note that the MKL dll’s are from the w_mkl_2018.1.156 distribution. You may need to replace these if you download a more recent version later!
+    Note: Please note that the MKL dll’s are from the w_mkl_2018.1.156 distribution. You may need to replace these if you download a more recent version later!
 
 10.	**Documentation**: In speech recognition technical matters please refer to the in the VoiceBridge distribution included e-books in PDF format and to the Kaldi documentation here: Kaldi Documentation: http://kaldi-asr.org/doc/about.html. For all other subjects concerning the VoiceBridge library and options please consult this website and the heavily documented source code.
 
