@@ -9,10 +9,6 @@ VoiceBridge is an open source (AI-TOOLKIT Open Source License - Apache 2.0 based
 
 You can find a lot of important information in the [VoiceBridge Wiki](https://github.com/AI-TOOLKIT/VoiceBridge/wiki)!
 
-**Discussion Group**
-
-You may join the VoiceBridge discussion group and converse with your fellow developers and researchers here: [VoiceBridge Discussion Group](https://groups.google.com/d/forum/voicebridge).
-
 VoiceBridge can be considered to be the MS Windows counterpart of KALDI (speech recognition software for Unix like operating systems) with the following differences and extensions:
 
 1.	VoiceBridge is C++ only code without any scripts. Kaldi depends heavily on several scripting languages (Bash, Perl, and Python).
