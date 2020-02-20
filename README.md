@@ -57,7 +57,7 @@ VoiceBridge can be considered to be the MS Windows counterpart of KALDI (speech 
 > **IMPORTANT NOTE:** in case you receive during the compilation a message several times which states: *"Unknown compiler version - please run the configure tests and report the results"* then it is coming from the boost library (compatibility issue between boost and MSVC).
 >  This does not cause any problem but it is a bit annoying.
 >  You may try to replace the boost distribution in VoiceBridge with a newer boost version but be aware that you may have to tweak boost a bit in order to be able to compile it.
-
+ 
     Please follow these steps for the compilation:
 	- **a.** Download and install the Intel MKL library. Note the location of the library. For example:
 
