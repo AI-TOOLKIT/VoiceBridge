@@ -9,7 +9,7 @@ VoiceBridge is an open source (AI-TOOLKIT Open Source License - Apache 2.0 based
 
 You can find a lot of important information in the [VoiceBridge Wiki](https://github.com/AI-TOOLKIT/VoiceBridge/wiki)!
 
-VoiceBridge can be considered to be the MS Windows counterpart of KALDI (speech recognition software for Unix like operating systems) with the following differences and extensions:
+VoiceBridge can be considered as the MS Windows counterpart of KALDI (speech recognition software for Unix like operating systems) with the following differences and extensions:
 
 1.	VoiceBridge is C++ only code without any scripts. Kaldi depends heavily on several scripting languages (Bash, Perl, and Python).
 
@@ -21,7 +21,7 @@ VoiceBridge can be considered to be the MS Windows counterpart of KALDI (speech 
     - LDA+MLLT+SAT,
     - DELTA+SAT (delta + delta-delta + SAT).
 
-	**Currently the DELTA+SAT is the best performing model with the highest accuracy and speed (1/5th of the training time compared to LDA+MLLT+SAT). Due to the automatic tuning of some input (e.g. pronunciation) VoiceBridge achieves the same accuracy in case of the clean LibriSpeech data as the DNN model in Kaldi!**
+	*Currently the DELTA+SAT is the best performing model with the highest accuracy and speed (1/5th of the training time compared to LDA+MLLT+SAT). Due to the automatic tuning of some input (e.g. pronunciation) VoiceBridge achieves the same accuracy in case of the clean LibriSpeech data as the DNN model in Kaldi!*
 
 3.	VoiceBridge includes the following **extra modules** not included in Kaldi:
     - Automatic language model generation.
@@ -67,18 +67,22 @@ VoiceBridge can be considered to be the MS Windows counterpart of KALDI (speech 
 
 - **b.** Adjust the MKL library location in the ‘SettingsVoiceBridge.props’ file in the root directory of VoiceBridge. Do not modify anything else because VoiceBridge is setup with relative paths and therefore you do not need to adjust any more settings.
 - **c.** Compile the openfst project located in ‘VoiceBridge\openfst-win-1.6’. It is best to compile both Debug and Release versions.
-	**Important**: Whole program optimization must be OFF for the library!
+	
+   **Important**: Whole program optimization must be OFF for the library!
 
 - **d.** Compile the Kaldi project located in ‘D:\_WORK1\VoiceBridge\kaldi-master’. It is best to compile both Debug and Release versions.
-	**Important**: Whole program optimization must be OFF for the library!
+	
+   **Important**: Whole program optimization must be OFF for the library!
  
 - **e.** Compile the VoiceBridge DLL located in ‘VoiceBridge\VoiceBridge\VoiceBridge’.
-	**Important**: Whole program optimization must be OFF! This option could result in 2-3% speed improvement but the DLL should then be cut in peaces because VS can not handle the optimization of so much code.
+	
+   **Important**: Whole program optimization must be OFF! This option could result in 2-3% speed improvement but the DLL should then be cut in peaces because VS can not handle the optimization of so much code.
 
 	Note: Please note that there is a shortcut to all of the above mentioned VS2017 projects in the root directory of the distribution.
  
 - **f.** In the TestDll example you can select which example you want to run. Choose between ‘TestYesNo();’ or ‘TestLibriSpeech();’ or run both after each other.
-	**Important**: You must make sure that the path to the example projects is correct in both example cpp files (YesNo.cpp, LibriSpeech.cpp). E.g. for the Yes-No example the path is set with the following command:
+	
+   **Important**: You must make sure that the path to the example projects is correct in both example cpp files (YesNo.cpp, LibriSpeech.cpp). E.g. for the Yes-No example the path is set with the following command:
 
 			fs::path project(exepath.branch_path() / "../../../../../VoiceBridgeProjects/YesNo");
 
