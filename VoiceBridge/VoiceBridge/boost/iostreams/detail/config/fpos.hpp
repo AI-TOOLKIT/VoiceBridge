@@ -30,7 +30,7 @@
      
 #include <boost/iostreams/detail/ios.hpp>
 
-#  define BOOST_IOSTREAMS_HAS_DINKUMWARE_FPOS
+//@-zso #  define BOOST_IOSTREAMS_HAS_DINKUMWARE_FPOS
 
 #if !defined(_FPOSOFF)
 #define BOOST_IOSTREAMS_FPOSOFF(fp) ((long long)(fp))

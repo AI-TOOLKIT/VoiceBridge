@@ -122,7 +122,8 @@ VOICEBRIDGE_API int PrepareData(int percentageTrain, std::string transc_ext, int
 	}
 
 	//In case the data directory exists then make a backup and clear the directory
-	if (fs::exists(voicebridgeParams.pth_data)) 
+	if (fs::exists(voicebridgeParams.pth_data)
+		&& percentageTrain > 0) //@+20022020 added for not deleting the data directory contents in case of prediction
 	{
 		LOGTW_INFO << "Creating backup of existing data directory...";
 		try	{

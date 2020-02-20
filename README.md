@@ -54,6 +54,9 @@ VoiceBridge can be considered to be the MS Windows counterpart of KALDI (speech 
 7.	Everything is included in the VoiceBridge distribution except the Intel MKL library which can be downloaded for free from this website: Intel MKL: https://software.intel.com/en-us/mkl.
 
 8.	**Compilation**: VoiceBridge compilation can be done with the included MS Visual Studio 2017 projects. As you probably know MS VS 2017 is free software. VoiceBridge only supports 64-bit compilation because 64-bit systems are faster and can use more memory.
+> **IMPORTANT NOTE:** in case you receive during the compilation a message several times which states: *"Unknown compiler version - please run the configure tests and report the results"* then it is coming from the boost library (compatibility issue between boost and MSVC).
+>  This does not cause any problem but it is a bit annoying.
+>  You may try to replace the boost distribution in VoiceBridge with a newer boost version but be aware that you may have to tweak boost a bit in order to be able to compile it.
 
     Please follow these steps for the compilation:
 	- **a.** Download and install the Intel MKL library. Note the location of the library. For example:
