@@ -123,7 +123,7 @@ VOICEBRIDGE_API int PrepareData(int percentageTrain, std::string transc_ext, int
 
 	//In case the data directory exists then make a backup and clear the directory
 	if (fs::exists(voicebridgeParams.pth_data)
-		&& percentageTrain > 0) //@+20022020 added for not deleting the data directory contents in case of prediction
+		&& percentageTrain > 0) //not deleting the data directory contents in case of prediction
 	{
 		LOGTW_INFO << "Creating backup of existing data directory...";
 		try	{
@@ -259,18 +259,20 @@ VOICEBRIDGE_API int PrepareData(int percentageTrain, std::string transc_ext, int
 		fs::path ftrn(filepath);
 		ftrn = fs::change_extension(ftrn, transc_ext);
 
-		//- Get the first line from the transcription file NOTE: it is assumed that there is only 1 line!		
+		//- Get the first line from the transcription file NOTE: it is assumed that there is only 1 line!
 		std::string sline;
-		try {
-			sline = GetFirstLineFromFile(ftrn.string());
+		if (percentageTrain > 0) { //do not do this if prediction
+			try {
+				sline = GetFirstLineFromFile(ftrn.string());
+			}
+			catch (const std::exception& e)
+			{
+				LOGTW_ERROR << e.what();
+				return -1;
+			}
+			//- Convert the text to lower case.
+			ConvertToCaseUtf8(sline, false);
 		}
-		catch (const std::exception& e)
-		{
-			LOGTW_ERROR << e.what();
-			return -1;
-		}
-		//- Convert the text to lower case.
-		ConvertToCaseUtf8(sline, false);
 		
 		std::string strans;
 		if (k <= count * percentageTrain / 100) {
@@ -330,70 +332,73 @@ VOICEBRIDGE_API int PrepareData(int percentageTrain, std::string transc_ext, int
 	//arpa start -----
 	//Make an arpa language model from the full text
 	fs::path pth_task_arpabo_input(voicebridgeParams.pth_project_input / voicebridgeParams.task_arpabo_name);
+
+	if (percentageTrain > 0) { //do not do this if prediction
 	//backup language model if already exists
-	if (fs::exists(pth_task_arpabo_input))
-	{
-		LOGTW_INFO << "Creating backup of language model...";
-		try {
-			if (Zip(pth_task_arpabo_input) < 0) {
+		if (fs::exists(pth_task_arpabo_input))
+		{
+			LOGTW_INFO << "Creating backup of language model...";
+			try {
+				if (Zip(pth_task_arpabo_input) < 0) {
+					LOGTW_ERROR << " Could not backup " << pth_task_arpabo_input.string() << ". Please make a backup manually and then delete the file.";
+					return -1;
+				}
+				//rename the archive - append the current time
+				std::stringstream sT;
+				auto t = std::time(nullptr);
+				auto tm = *std::localtime(&t);
+				sT << std::put_time(&tm, "%Y%m%d-%H%M%S");
+				fs::path newpath(voicebridgeParams.pth_project_input / (pth_task_arpabo_input.filename().stem().string() + sT.str() + ".zip"));
+				if (fs::exists(newpath))
+					fs::remove(newpath);
+				fs::rename(voicebridgeParams.pth_project_input / (pth_task_arpabo_input.filename().stem().string() + ".zip"), newpath);
+				LOGTW_INFO << "Language model succesfully backed up to " << newpath;
+			}
+			catch (const std::exception&) {
 				LOGTW_ERROR << " Could not backup " << pth_task_arpabo_input.string() << ". Please make a backup manually and then delete the file.";
 				return -1;
 			}
-			//rename the archive - append the current time
-			std::stringstream sT;
-			auto t = std::time(nullptr);
-			auto tm = *std::localtime(&t);
-			sT << std::put_time(&tm, "%Y%m%d-%H%M%S");
-			fs::path newpath(voicebridgeParams.pth_project_input / (pth_task_arpabo_input.filename().stem().string() + sT.str() + ".zip"));
-			if (fs::exists(newpath))
-				fs::remove(newpath);
-			fs::rename(voicebridgeParams.pth_project_input / (pth_task_arpabo_input.filename().stem().string() + ".zip"), newpath);
-			LOGTW_INFO << "Language model succesfully backed up to " << newpath;
 		}
-		catch (const std::exception&) {
-			LOGTW_ERROR << " Could not backup " << pth_task_arpabo_input.string() << ". Please make a backup manually and then delete the file.";
+		//create LM
+		string_vec options;
+		options.push_back("-text");
+		options.push_back((voicebridgeParams.pth_data / "full_text.txt").string());
+		//save arpa lm
+		options.push_back("-wl");
+		options.push_back(pth_task_arpabo_input.string());
+		//set n in n-gram
+		options.push_back("-o");
+		options.push_back(std::to_string(orderngram));
+		//save the vocab also
+		options.push_back("-wv");
+		options.push_back((voicebridgeParams.pth_data / "vocab.txt.temp").string());
+		//
+		StrVec2Arg args(options);
+		if (EstimateNgram(args.argc(), args.argv()) < 0) {
+			LOGTW_ERROR << "Could not create arpa language model from " << (voicebridgeParams.pth_data / "full_text.txt").string();
 			return -1;
 		}
-	}
-	//create LM
-	string_vec options;
-	options.push_back("-text");
-	options.push_back((voicebridgeParams.pth_data / "full_text.txt").string());
-	//save arpa lm
-	options.push_back("-wl");
-	options.push_back(pth_task_arpabo_input.string());
-	//set n in n-gram
-	options.push_back("-o");
-	options.push_back(std::to_string(orderngram));
-	//save the vocab also
-	options.push_back("-wv");
-	options.push_back((voicebridgeParams.pth_data / "vocab.txt.temp").string());
-	//
-	StrVec2Arg args(options);
-	if (EstimateNgram(args.argc(), args.argv()) < 0) {
-		LOGTW_ERROR << "Could not create arpa language model from " << (voicebridgeParams.pth_data / "full_text.txt").string();
-		return -1;
-	}
-	//arpa end ---
+		//arpa end ---
 
-	//NOTE: the vocab returned from EstimateNgram() must be cleaned from unwanted symbols
-	try	{
-		fs::ifstream ifs_vocab(voicebridgeParams.pth_data / "vocab.txt.temp");
-		fs::ofstream ofs_vocab(voicebridgeParams.pth_data / "vocab.txt", std::ios::binary | std::ios::out);
-		std::string line;
-		while (std::getline(ifs_vocab, line)) {
-			if (line.find("</s>") == std::string::npos && line.find("<s>") == std::string::npos)
-				ofs_vocab << line << "\n";
+		//NOTE: the vocab returned from EstimateNgram() must be cleaned from unwanted symbols
+		try {
+			fs::ifstream ifs_vocab(voicebridgeParams.pth_data / "vocab.txt.temp");
+			fs::ofstream ofs_vocab(voicebridgeParams.pth_data / "vocab.txt", std::ios::binary | std::ios::out);
+			std::string line;
+			while (std::getline(ifs_vocab, line)) {
+				if (line.find("</s>") == std::string::npos && line.find("<s>") == std::string::npos)
+					ofs_vocab << line << "\n";
+			}
+			ofs_vocab.flush(); ofs_vocab.close();
+			ifs_vocab.close();
+			fs::remove(voicebridgeParams.pth_data / "vocab.txt.temp");
 		}
-		ofs_vocab.flush(); ofs_vocab.close();
-		ifs_vocab.close();
-		fs::remove(voicebridgeParams.pth_data / "vocab.txt.temp");
-	}
-	catch (const std::exception& ex)
-	{
-		LOGTW_ERROR << ex.what();
-		return -1;
-	}
+		catch (const std::exception& ex)
+		{
+			LOGTW_ERROR << ex.what();
+			return -1;
+		}
+	} //do not do this if prediction
 	
 	fs::path pth_task_arpabo_target(voicebridgeParams.pth_local / "lm_tg.arpa");
 	fs::path pth_train_base(voicebridgeParams.pth_data / voicebridgeParams.train_base_name);

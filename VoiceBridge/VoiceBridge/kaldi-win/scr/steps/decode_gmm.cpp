@@ -290,6 +290,7 @@ VOICEBRIDGE_API int Decode(
 			}
 		}
 		options_gmmlatgen.push_back("ark:"+(decode_dir / "lat.JOBID").string()); //output
+		options_gmmlatgen.push_back("ark,t:" + (decode_dir / "w.JOBID").string()); //output2
 
 		//make sure that there are no old lat.* files in the output directory beacuse all 'lat.*' will be used later!
 		if (DeleteAllMatching(decode_dir, boost::regex("^(lat\\.).*")) < 0) return -1;
@@ -348,6 +349,30 @@ VOICEBRIDGE_API int Decode(
 
 		//NOTE: CER is not implemented yet (does not seem to be important now).
 
+	}
+
+	//Output the final transcription
+	// Convert the word ID's to words for the final transcription
+	fs::path symtab = graph_dir / "words.txt";
+	for (int JOBID = 1; JOBID <= nj; JOBID++)
+	{
+		//int2sym
+		StringTable t_symtab, t_LMWT;
+		if (ReadStringTable(symtab.string(), t_symtab) < 0)
+		{//symtab
+			LOGTW_ERROR << "Failed to convert output word indexes to transcription.";
+			return -1;
+		}
+		if (ReadStringTable((decode_dir / ("w." + std::to_string(JOBID))).string(), t_LMWT) < 0)
+		{ //input
+			LOGTW_ERROR << "Failed to convert output word indexes to transcription.";
+			return -1;
+		}
+		fs::path sym_out(decode_dir / ("transcription" + std::to_string(JOBID) + ".trn"));
+		if (Int2Sym(t_symtab, t_LMWT, sym_out, 1, -1) < 0) { //NOTE: fields 2- (zero based index 1- till the end)
+			LOGTW_ERROR << "Failed to convert output word indexes to transcription.";
+			return -1;
+		}
 	}
 	
 	//clean up

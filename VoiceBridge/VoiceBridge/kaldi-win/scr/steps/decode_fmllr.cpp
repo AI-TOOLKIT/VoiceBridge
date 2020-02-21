@@ -663,6 +663,72 @@ VOICEBRIDGE_API int DecodeFmllr(
 
 	}
 
+	//decode and output the final transcription
+	{
+		fs::path symtab = graphdir / "words.txt";		
+		int ret = 0;
+		for (int JOBID = 1; JOBID <= nj; JOBID++) {
+			fs::path log(dir / "log" / ("decode." + std::to_string(JOBID) + ".log"));
+			fs::ofstream file_log(log, fs::ofstream::binary | fs::ofstream::out);
+			if (!file_log) LOGTW_WARNING << "Log file is not accessible " << log << ".";
+			//use the optimized latices for the decoding
+			if (decode_mbr) {
+				//LatticeMbrDecode
+				string_vec options_lattice_mbr_decode;
+				options_lattice_mbr_decode.push_back("--print-args=false");
+				options_lattice_mbr_decode.push_back("--word-symbol-table=" + symtab.string());
+				options_lattice_mbr_decode.push_back("ark:" + (dir / ("lat." + std::to_string(JOBID))).string()); //input
+				options_lattice_mbr_decode.push_back("ark,t:" + (dir / ("w." + std::to_string(JOBID))).string()); //output
+				try {
+					StrVec2Arg args(options_lattice_mbr_decode);
+					ret = LatticeMbrDecode(args.argc(), args.argv(), file_log);
+				}
+				catch (const std::exception& ex)
+				{
+					LOGTW_ERROR << "Error in (LatticeMbrDecode). Reason: " << ex.what();
+					return -1;
+				}
+			}
+			else {
+				string_vec options_lattice_best_path;
+				//LatticeBestPath
+				options_lattice_best_path.push_back("--print-args=false");
+				options_lattice_best_path.push_back("--word-symbol-table=" + symtab.string());
+				options_lattice_best_path.push_back("ark:" + (dir / ("lat." + std::to_string(JOBID))).string()); //input
+				options_lattice_best_path.push_back("ark,t:" + (dir / ("w." + std::to_string(JOBID))).string()); //output
+				try {
+					StrVec2Arg args(options_lattice_best_path);
+					ret = LatticeBestPath(args.argc(), args.argv(), file_log);
+				}
+				catch (const std::exception& ex)
+				{
+					LOGTW_ERROR << "Error in (LatticeBestPath). Reason: " << ex.what();
+					return -1;
+				}
+			}
+
+			//Output the final transcription
+			// Convert the word ID's to words for the final transcription		
+			//int2sym
+			StringTable t_symtab, t_LMWT;
+			if (ReadStringTable(symtab.string(), t_symtab) < 0)
+			{//symtab
+				LOGTW_ERROR << "Failed to convert output word indexes to transcription.";
+				return -1;
+			}
+			if (ReadStringTable((dir / ("w." + std::to_string(JOBID))).string(), t_LMWT) < 0)
+			{ //input
+				LOGTW_ERROR << "Failed to convert output word indexes to transcription.";
+				return -1;
+			}
+			fs::path sym_out(dir / ("transcription" + std::to_string(JOBID) + ".trn"));
+			if (Int2Sym(t_symtab, t_LMWT, sym_out, 1, -1) < 0) { //NOTE: fields 2- (zero based index 1- till the end)
+				LOGTW_ERROR << "Failed to convert output word indexes to transcription.";
+				return -1;
+			}
+		}
+	}
+
 	//cleanup
 	for (int JOBID = 1; JOBID <= nj; JOBID++)
 		if (fs::exists(dir / ("trans_tmp." + std::to_string(JOBID))))
