@@ -76,7 +76,7 @@ VoiceBridge can be considered as the MS Windows counterpart of KALDI (speech rec
  
 - **e.** Compile the VoiceBridge DLL located in ‘VoiceBridge\VoiceBridge\VoiceBridge’.
 	
-   **Important**: Whole program optimization must be OFF! This option could result in 2-3% speed improvement but the DLL should then be cut in peaces because VS can not handle the optimization of so much code.
+   **Important**: Whole program optimization must be OFF! This option could result in 2-3% speed improvement but the DLL should then be cut in peaces because VS can not handle the optimization of so much code. Also, the absolute path of ‘VoiceBridge\VoiceBridge\VoiceBridge’ can contain no spaces, otherwise you will get a MSB3073 code 4 error and the build will fail.
 
 	Note: Please note that there is a shortcut to all of the above mentioned VS2017 projects in the root directory of the distribution.
  
