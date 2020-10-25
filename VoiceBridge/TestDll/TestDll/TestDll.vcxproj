@@ -67,7 +67,7 @@
       <AdditionalDependencies>VoiceBridge.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PreBuildEvent>
-      <Command>xcopy /Y "$(ProjectDir)..\..\VoiceBridge\x64\Debug\VoiceBridge.dll" $(TargetDir)</Command>
+      <Command>xcopy /Y "$(ProjectDir)..\..\VoiceBridge\x64\Debug\VoiceBridge.dll" "$(TargetDir)"</Command>
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -88,7 +88,7 @@
       <AdditionalDependencies>VoiceBridge.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PreBuildEvent>
-      <Command>xcopy /Y "$(ProjectDir)..\..\VoiceBridge\x64\Release\VoiceBridge.dll" $(TargetDir)</Command>
+      <Command>xcopy /Y "$(ProjectDir)..\..\VoiceBridge\x64\Release\VoiceBridge.dll" "$(TargetDir)"</Command>
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
